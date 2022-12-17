@@ -1,5 +1,5 @@
-const BookShow = () => {
-  return <div>book show</div>
+const BookShow = ({title}) => {
+  return <p>{title}</p>
 }
 
 export default BookShow;
