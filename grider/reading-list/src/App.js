@@ -5,25 +5,21 @@ import BookList from './components/BookList';
 
 const App = () => {
   const [books, setBooks] = useState([]);
-  const [bookTitle, setBookTitle] = useState('');
   
-  const createBook = (event) => {
-    event.preventDefault();
-    setBooks(books.concat({title: bookTitle, id: Math.random()}));
-    setBookTitle('');
-    console.log(books);
-  }
-
-  const handleInput = (event) => {
-    setBookTitle(event.target.value);
+  const createBook = (title) => {
+    const updatedBooks = [
+      ...books,
+       {id: Math.round(Math.random() * 999), title}
+    ];
+    setBooks(updatedBooks);
   }
 
   return(
-    <>
+    <div className='app'>
       <h1>Reading List App</h1>
-      <BookCreate onCreateBook={createBook} handleInput={handleInput} bookTitle={bookTitle} />
       <BookList books={books} />
-    </>
+      <BookCreate onCreateBook={createBook} />
+    </div>
   );
 }
 
