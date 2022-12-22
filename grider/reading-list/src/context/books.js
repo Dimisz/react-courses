@@ -9,6 +9,7 @@ function Provider({ children }){
   const fetchBooks = async () => {
     const response = await axios.get('http://localhost:3001/books');
     setBooks(response.data);
+    //console.log(`books after fetched in Provider: ${books}`);
   };
 
   const editBookById = async (id, newTitle) => {
@@ -54,10 +55,10 @@ function Provider({ children }){
     deleteBookById,
     editBookById,
     createBook,
-    fetchBooks
+    // fetchBooks,
   };
 
-  return <BooksContext.Provider value={{}}>
+  return <BooksContext.Provider value={{valueToShare}}>
     {children}
   </BooksContext.Provider>
 }
