@@ -7,9 +7,12 @@ function Provider({ children }){
   const [books, setBooks] = useState([]);
   
   const fetchBooks = async () => {
+    console.log(`inside fetch in books, books before request: ${books}`);
     const response = await axios.get('http://localhost:3001/books');
-    setBooks(response.data);
-    //console.log(`books after fetched in Provider: ${books}`);
+
+    console.log(`response.data: ${response.data}`);
+    setBooks([...response.data]);
+    console.log(`inside fetch in books, books after request: ${books}`);
   };
 
   const editBookById = async (id, newTitle) => {
@@ -50,15 +53,15 @@ function Provider({ children }){
     setBooks(updatedBooks);
   }
 
-  const valueToShare = {
+  const valuesToShare = {
     books,
     deleteBookById,
     editBookById,
     createBook,
-    // fetchBooks,
+    fetchBooks,
   };
 
-  return <BooksContext.Provider value={{valueToShare}}>
+  return <BooksContext.Provider value={valuesToShare}>
     {children}
   </BooksContext.Provider>
 }
