@@ -1,7 +1,7 @@
 {
   "books": [
     {
-      "title": "The old man and the sea",
+      "title": "The young man and the sea",
       "id": 2
     },
     {
@@ -19,6 +19,10 @@
     {
       "title": "Say no to yes!",
       "id": 9
+    },
+    {
+      "title": "Gunslinger 2",
+      "id": 10
     }
   ]
 }
