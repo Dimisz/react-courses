@@ -11,12 +11,14 @@ const Accordion = ({items}) => {
       <div key={item.id}>
         <div className="flex justify-between p-3 bg-gray-50 border-b items-center cursor-pointer" 
              onClick={() => {
-              if(isExpanded){
-                setExpandedIndex(-1);
-              }
-              else {
-                setExpandedIndex(index);
-              }
+              setExpandedIndex((currentIndex) => {
+                if(currentIndex === index){
+                  return -1;
+                }
+                else{
+                  return index;
+                }
+              })
             }}
         >{item.label}{icon}</div>
         {isExpanded && <div className="border-b p-5">{item.content}</div>}
