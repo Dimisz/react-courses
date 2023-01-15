@@ -1,8 +1,19 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { GoChevronDown, GoChevronLeft }from 'react-icons/go';
+
+import Panel from './Panel';
 
 const Dropdown = ({ options, value, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  //capturing clicks outside the dropdow
+  // to close the dropdown
+  useEffect(() => {
+    const handler = (event) => {
+      console.log(event.target);
+    };
+    document.addEventListener('click', handler, true);
+  }, []);
 
   const handleClick = () => {
     setIsOpen((currentIsOpen) => {
@@ -25,13 +36,13 @@ const Dropdown = ({ options, value, onChange }) => {
 
   return (
     <div className='w-48 relative'>
-      <div className="flex justify-between items-center cursor-pointer border rounder p-3 shadow bg-white w-full" 
+      <Panel className="flex justify-between items-center cursor-pointer" 
            onClick={handleClick}
       >
         {value || "Select..."}
         {isOpen ? <GoChevronDown className='text-lg'/> : <GoChevronLeft className='text-lg'/>}
-      </div>
-      {isOpen &&  <div className='absolute top-full border rounded p-3 shadow bg-white w-full'>{renderedOptions}</div>}
+      </Panel>
+      {isOpen &&  <Panel className='absolute top-full'>{renderedOptions}</Panel>}
     </div>
   );
 }
