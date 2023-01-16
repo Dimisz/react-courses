@@ -12,6 +12,7 @@ const Dropdown = ({ options, value, onChange }) => {
     const handler = (event) => {
       // element is not rendered, i.e. removed
      if(!divElement.current){ 
+      //console.log('no elt');
       return;
      }
      // click occurred somewhere outside the element
