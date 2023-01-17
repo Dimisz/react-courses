@@ -1,9 +1,15 @@
 import React from 'react';
 
-const App = () => {
-  return(
-    <h1>Seasons App</h1>
-  );
+
+class App extends React.Component {
+  render(){
+    window.navigator.geolocation.getCurrentPosition(
+      (position) => console.log(position), // success callback
+      (err) => console.log(`ERROR: ${err}`) // failure callback
+    );
+
+    return <div>Latitude: </div>;
+  }
 }
 
 export default App;
