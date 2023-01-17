@@ -4,9 +4,10 @@ import React from 'react';
 class App extends React.Component {
   constructor(props){
     super(props);
-
     this.state = { lat: null, errorMessage: '' };
+  }
 
+  componentDidMount(){
     window.navigator.geolocation.getCurrentPosition(
       (position) => {
         this.setState({ lat: position.coords.latitude });
@@ -15,6 +16,11 @@ class App extends React.Component {
         this.setState({ errorMessage: err.message });
       } // failure callback
     );
+    console.log('component mounted');
+  }
+
+  componentDidUpdate(){
+    console.log('component got updated');
   }
 
   render(){
