@@ -1,5 +1,7 @@
 import React from 'react';
 
+import SearchBar from './components/SearchBar';
+
 class App extends React.Component {
   constructor(props){
     super(props);
@@ -7,7 +9,9 @@ class App extends React.Component {
 
   render(){
     return(
-      <h1>Pics App</h1>
+      <div className='ui container' style={{marginTop: '10px'}}>
+        <SearchBar />
+      </div>
     );
   }
 }
