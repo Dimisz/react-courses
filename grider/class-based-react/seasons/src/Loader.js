@@ -1,5 +1,4 @@
 import React from 'react';
-import './Loader.css';
 
 class Loader extends React.Component {
   constructor(props){
@@ -8,12 +7,9 @@ class Loader extends React.Component {
 
   render(){
     return(
-      <div className="ui segment">
         <div className="ui active dimmer">
-          <div className="ui text loader">Loading</div>
+          <div className="ui big text loader">Loading...</div>
         </div>
-        <p></p>
-      </div>
     );
   };
 };
