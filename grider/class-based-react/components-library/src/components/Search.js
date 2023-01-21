@@ -1,8 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const Search = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  useEffect(() => {
+    // CANNOT USE ASYNC-EFFECT DIRECTLY AS AN ARGUMENT OF useEffect
+    // OPTION 1
+    const search = async() => {
+      await axios.get('....');
+    };
+    search();
+
+    // OPTION 2
+    // (async () => {
+    //   await axios.get()
+    // })(); // immediately executed anonymous function
+
+    // OPTION 3 with promises
+    // axios.get('...')
+    //   .then((response) => {
+    //     console.log(response.data);
+    //   });
+  }, [searchTerm]);
+
   return(
-    <h1>Search</h1>
+    <div>
+      <div className='ui form'>
+        <div className='field'>
+          <label>Enter Search Term</label>
+          <input className='input' 
+                 onChange={(event) => setSearchTerm(event.target.value)}
+                 value={searchTerm}
+          />
+        </div>
+      </div>
+    </div>
   );
 }
 
