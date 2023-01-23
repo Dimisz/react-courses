@@ -8,7 +8,15 @@ const Search = () => {
     // CANNOT USE ASYNC-EFFECT DIRECTLY AS AN ARGUMENT OF useEffect
     // OPTION 1
     const search = async() => {
-      await axios.get('....');
+      await axios.get('https://en.wikipedia.org/w/api.php', {
+        params: {
+          action: 'query',
+          list: 'search',
+          origin: '*',
+          format: 'json',
+          srsearch: searchTerm,
+        }
+      });
     };
     search();
 
