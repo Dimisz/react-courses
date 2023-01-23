@@ -21,10 +21,16 @@ const Search = () => {
       });
       setResults(data.query.search);
     };
-    if(searchTerm){
-      search();
-    }
 
+    const timeoutId = setTimeout(() => {
+      if(searchTerm){
+        search();
+      }
+    }, 1000);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
     // OPTION 2
     // (async () => {
     //   await axios.get()
