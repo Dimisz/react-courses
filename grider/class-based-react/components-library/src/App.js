@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Route from './components/Route';
 
+import Header from './components/Header';
 import Accordion from './components/Accordion';
 import Translate from './components/Translate';
 import Search from './components/Search';
@@ -62,9 +63,10 @@ const items = [
 
 const App = () => {
   const [selected, setSelected] = useState(options[0]);
-  
+
   return(
     <div>
+      <Header />
       <Route path="/">
         <Accordion items={items} />
       </Route>
