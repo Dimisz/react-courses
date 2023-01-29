@@ -1,8 +1,12 @@
 import React from 'react';
 
+import Header from './components/Header';
 const App = () => {
   return(
-    <h1>Expense Tracker</h1>
+    <>
+      <Header />
+      <h1>Expense Tracker</h1>
+    </>
   );
 }
 
