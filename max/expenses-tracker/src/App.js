@@ -1,9 +1,13 @@
 import React from 'react';
 
-import Header from './components/Header';
+import ExpenseItem from './components/ExpenseItem';
+
 const App = () => {
   return(
-    <h1>App</h1>
+    <>
+      <h1>Let's get started</h1>
+      <ExpenseItem />
+    </>
   );
 }
 
