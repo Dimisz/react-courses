@@ -1,9 +1,12 @@
-import DropdownPage from "./pages/DropdownPage";
+import Link from "./components/Link";
+
 const App = () => {
-  
-  
+
   return (
-    <DropdownPage />
+    <div>
+      <Link to='/accordion'>Go to accordion</Link>
+      <Link to='/dropdown'>Go to dropdown</Link>
+    </div>
   );
 }
 
