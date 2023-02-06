@@ -6,9 +6,11 @@ const Panel = ({ children, className,  ...rest }) => {
     className
   );
 
-  return <div {...rest} className={finalClassNames}>
+  return(
+  <div {...rest} className={finalClassNames}>
     {children}
-  </div>;
+  </div>
+  );
 }
 
 export default Panel;
