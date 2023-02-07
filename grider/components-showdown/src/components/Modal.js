@@ -1,6 +1,16 @@
-const Modal = () => {
-  return(
-    <div>Modal</div>
+import ReactDOM from 'react-dom';
+
+const Modal = ({children, actionBar, onClose}) => {
+  return ReactDOM.createPortal(
+    <div>
+      <div onClick={onClose} className="absolute inset-0 bg-red-300 opacity-80">
+      </div>
+      <div className="absolute inset-40 p-10 bg-white">
+        {children}
+        {actionBar}
+      </div>
+    </div>,
+    document.querySelector('.modal-container')
   );
 }
 
