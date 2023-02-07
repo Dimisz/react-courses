@@ -1,5 +1,6 @@
 import Route from "./components/Route";
 
+import TablePage from "./pages/TablePage";
 import AccordionPage from './pages/AccordionPage';
 import DropdownPage from './pages/DropdownPage';
 import ButtonPage from './pages/ButtonPage';
@@ -23,6 +24,9 @@ const App = () => {
         </Route>
         <Route path='/modal'>
           <ModalPage />
+        </Route>
+        <Route path='/table'>
+          <TablePage />
         </Route>
       </div>
     </div>
