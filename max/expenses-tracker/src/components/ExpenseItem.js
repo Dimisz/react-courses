@@ -1,9 +1,18 @@
 import React from 'react';
+import './ExpenseItem.css'
 
+import Date from './Date';
 
-const ExpenseItem = () => {
+const ExpenseItem = ({expense}) => {
+ 
   return(
-    <h1>Expense Item</h1>
+    <div className='expense-item'>
+      <Date date={expense.date} />
+      <div className='expense-item__description'>
+        <h2>{expense.title}</h2>
+        <div className='expense-item__price'>${expense.amount}</div>
+      </div>
+    </div>
   );
 }
 
