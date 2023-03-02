@@ -55,9 +55,9 @@ const NewExpenseForm = ({handleSubmit}) => {
                  onChange={(e) => setNewExpense((prevExpense) => {
                   const partsOfDate = e.target.value.split('-');
                   //console.log(new Date(e.target.value))
-                  return {...prevExpense, date: new Date(partsOfDate[0], partsOfDate[1], partsOfDate[2])}
+                  return {...prevExpense, date: new Date(Number(partsOfDate[0]), Number(partsOfDate[1]), Number(partsOfDate[2]))}
                  })}
-                 value={newExpense.date}
+                //  value={newExpense.date}
           />
         </div>
       </div>
