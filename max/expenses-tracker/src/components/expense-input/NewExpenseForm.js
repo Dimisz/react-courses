@@ -3,19 +3,24 @@ import { useState } from 'react';
 import './NewExpenseForm.css';
 
 const NewExpenseForm = ({handleSubmit}) => {
+  
   const [newExpense, setNewExpense] = useState({
     id: '',
     title: '',
     amount: '', 
     date: ''
   });
- 
+
   const submitHandler = (e) => {
     e.preventDefault();
     setNewExpense((prevExpense) => {
       return {...prevExpense, id: `${prevExpense.title}${prevExpense.amount}`}
     });
-    handleSubmit(newExpense);
+    handleSubmit(
+      {
+      ...newExpense, date: new Date(newExpense.date)
+      }
+    );
     setNewExpense({
       id: '',
       title: '',
@@ -59,11 +64,9 @@ const NewExpenseForm = ({handleSubmit}) => {
                  min='2023-01-01'
                  step='2024-12-31'
                  onChange={(e) => setNewExpense((prevExpense) => {
-                  const partsOfDate = e.target.value.split('-');
-                  //console.log(new Date(e.target.value))
-                  return {...prevExpense, date: new Date(Number(partsOfDate[0]), Number(partsOfDate[1]), Number(partsOfDate[2]))}
+                    return {...prevExpense, date: e.target.value}
                  })}
-                //  value={newExpense.date}
+                 value={newExpense.date}
           />
         </div>
       </div>
