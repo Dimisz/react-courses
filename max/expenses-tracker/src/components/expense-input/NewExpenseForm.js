@@ -9,13 +9,19 @@ const NewExpenseForm = ({handleSubmit}) => {
     amount: '', 
     date: ''
   });
-
+ 
   const submitHandler = (e) => {
     e.preventDefault();
     setNewExpense((prevExpense) => {
       return {...prevExpense, id: `${prevExpense.title}${prevExpense.amount}`}
     });
     handleSubmit(newExpense);
+    setNewExpense({
+      id: '',
+      title: '',
+      amount: '', 
+      date: ''
+    })
   }
 
   return(
