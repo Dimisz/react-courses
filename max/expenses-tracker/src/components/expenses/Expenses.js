@@ -2,14 +2,12 @@ import ExpenseItem from './ExpenseItem';
 import Card from '../ui/Card';
 import './Expenses.css';
 
+import ExpensesFilter from './ExpensesFilter';
+
 const Expenses = ({ expenses }) => {
   return(
     <Card className='expenses'>
-      {expenses.map((expense) => {
-        return(
-          <ExpenseItem key={expense.id} expense={expense}/>
-        );
-      })}
+      <ExpensesFilter expenses={expenses} />
     </Card>
   )
 }
