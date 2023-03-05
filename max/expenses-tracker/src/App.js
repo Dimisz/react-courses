@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 import Expenses from "./components/expenses/Expenses";
 import NewExpense from "./components/expense-input/NewExpense";
-import ExpensesFilter from './components/expenses/ExpensesFilter';
 
 const expenses = [
   {
