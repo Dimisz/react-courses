@@ -16,24 +16,26 @@ const NewExpenseForm = ({handleSubmit}) => {
     setShowingForm((prev) => {
       return !prev;
     });
-  };
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-    setNewExpense((prevExpense) => {
-      return {...prevExpense, id: `${prevExpense.title}${prevExpense.amount}`}
-    });
-    handleSubmit(
-      {
-      ...newExpense, date: new Date(newExpense.date)
-      }
-    );
     setNewExpense({
       id: '',
       title: '',
       amount: '', 
       date: ''
     });
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    // setNewExpense((prevExpense) => {
+    //   return {...prevExpense, id: `${prevExpense.title}${prevExpense.amount}`}
+    // });
+    handleSubmit(
+      {
+        ...newExpense, 
+        date: new Date(newExpense.date), 
+        id: `${newExpense.title}${newExpense.amount}`
+      }
+    );
     toggleForm();
   }
 

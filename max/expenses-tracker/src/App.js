@@ -30,7 +30,7 @@ const App = () => {
   
   const onSubmit = (newExpense) => {
     setItems((prevItems) => {
-      return [...prevItems, newExpense]
+      return [...prevItems, newExpense];
     });
   }
 
