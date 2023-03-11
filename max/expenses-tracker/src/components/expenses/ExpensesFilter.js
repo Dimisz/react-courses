@@ -17,6 +17,14 @@ const ExpensesFilter = ({expenses}) => {
     }
   }
 
+  const renderedExpenses = filteredExpenses.length === 0 
+          ? <p>No expenses found</p>
+          : filteredExpenses.map((expense) => {
+            return(
+                <ExpenseItem key={expense.id} expense={expense}/>
+            );
+  }); 
+
   return(
     <>
       <label htmlFor='year-selected'>Filter by year</label>
@@ -26,14 +34,7 @@ const ExpensesFilter = ({expenses}) => {
         <option value="2021">2021</option>
         <option value="2022">2022</option>
       </select>
-      {filteredExpenses.length === 0 
-        ? <p>No expenses found</p>
-        : filteredExpenses.map((expense) => {
-          return(
-              <ExpenseItem key={expense.id} expense={expense}/>
-          );
-        }) 
-      }
+      {renderedExpenses}
     </>
   )
 };
