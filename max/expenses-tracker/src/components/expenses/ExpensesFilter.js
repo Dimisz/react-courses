@@ -19,18 +19,21 @@ const ExpensesFilter = ({expenses}) => {
 
   return(
     <>
-      <label htmlFor='year-selected'></label>
+      <label htmlFor='year-selected'>Filter by year</label>
       <select id='year-selected' name="year-selected" onChange={handleSelect}>
         <option value='all'>All</option>
         <option value="2020">2020</option>
         <option value="2021">2021</option>
         <option value="2022">2022</option>
       </select>
-      {filteredExpenses.map((expense) => {
-        return(
-            <ExpenseItem key={expense.id} expense={expense}/>
-        );
-      })}
+      {filteredExpenses.length === 0 
+        ? <p>No expenses found</p>
+        : filteredExpenses.map((expense) => {
+          return(
+              <ExpenseItem key={expense.id} expense={expense}/>
+          );
+        }) 
+      }
     </>
   )
 };
