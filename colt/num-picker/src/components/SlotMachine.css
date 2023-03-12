@@ -1,0 +1,26 @@
+
+.card {
+  font-family: sans-serif;
+  padding: 10px; 
+  margin: 5px;
+  text-align: center;
+  display: inline-block;
+  width: 31%;
+}
+
+.win {
+  background-color: greenyellow; 
+  border: 1px solid rgb(15, 191, 15);
+}
+
+.lose {
+  background-color: rgb(233, 80, 80); 
+  border: 1px solid red;
+}
+
+.dice {
+  display: inline-block;
+  width: 10%;
+  padding: 5px;
+  font-size: 25px;
+}
