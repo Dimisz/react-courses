@@ -2,6 +2,10 @@ import React from 'react';
 import './SlotMachine.css';
 
 class SlotMachine extends React.Component {
+  static defaultProps = {
+    title: 'Slot Machine'
+  }
+
   render(){
     const nums = [1, 2, 3];
     const roll = [];
@@ -14,7 +18,7 @@ class SlotMachine extends React.Component {
 
     return(
       <div className={`card ${rollSet.length === 1 ? 'win' : 'lose'}`} >
-        <h2>Your roll</h2>
+        <h2>{this.props.title}</h2>
         {roll.map((num) => 
           <div className={`dice ${rollSet.length === 1 ? 'win' : 'lose'}`}>
             {num}

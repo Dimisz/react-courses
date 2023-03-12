@@ -5,9 +5,8 @@ class App extends React.Component {
   render(){
     return(
       <>
-        <h1 sty>Slot Machines!</h1>
-        <SlotMachine/>
-        <SlotMachine/>
+        <SlotMachine title='First Roll' />
+        <SlotMachine title='Second Roll' />
         <SlotMachine/>
       </>
     )
