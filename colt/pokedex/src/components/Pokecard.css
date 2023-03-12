@@ -1,0 +1,19 @@
+.card {
+  display: inline-block;
+  width: 20%;
+  background-color: gray;
+  text-align: center;
+  padding: 10px;
+  margin: 10px;
+  font-family: sans-serif;
+}
+
+.card h1 {
+  font-size: 20px;
+  color: purple;
+}
+
+.card img {
+  width: 40%;
+  height: 40%;
+}
