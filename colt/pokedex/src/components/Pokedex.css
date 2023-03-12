@@ -1,0 +1,9 @@
+.wrapper {
+  width: 95%;
+  text-align: center;
+}
+
+.wrapper h1 {
+  font-family: sans-serif;
+  color: gray;
+}

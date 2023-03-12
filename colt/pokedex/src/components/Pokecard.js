@@ -5,10 +5,11 @@ import './Pokecard.css';
 class Pokecard extends React.Component {
   render(){
     const {id, name, type, base_experience} = this.props.pokemon;
-    const url = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+    // const url = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+    const url = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${id}.png`;
     return(
       <div className='card'>
-        <h1>{name}</h1>
+        <h2>{name}</h2>
         <img src={url} alt={name}></img>
         <p>Type: {type}</p>
         <p>EXP: {base_experience}</p>
@@ -18,3 +19,5 @@ class Pokecard extends React.Component {
 };
 
 export default Pokecard;
+
+// `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${id}.png`
