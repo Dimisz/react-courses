@@ -1,24 +1,17 @@
 .card {
-  display: inline-block;
-  width: 20%;
-  background-color: gray;
+  background-color: white;
+  width: 300px;
   text-align: center;
   padding: 10px;
-  margin: 10px;
-  font-family: sans-serif;
-  line-height: 5px;
+  margin: 1rem;
+  box-shadow: 7px 10px 12px -5px rgba(0, 0, 0, 0.56);
+  border-radius: 10px;
 }
 
-.card:hover {
-  width: 21%
+.title {
+
 }
 
-.card h2 {
-  font-size: 20px;
-  color: purple;
-}
-
-.card img {
-  width: 40%;
-  height: 40%;
+.data {
+  font-size: 90%;
 }

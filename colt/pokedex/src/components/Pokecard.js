@@ -1,5 +1,4 @@
 import React from 'react';
-//   {id: 4, name: 'Charmander', type: 'fire', base_experrience: 62}, 
 import './Pokecard.css';
 
 class Pokecard extends React.Component {
@@ -9,10 +8,10 @@ class Pokecard extends React.Component {
     const url = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${id}.png`;
     return(
       <div className='card'>
-        <h2>{name}</h2>
+        <h1 className='title'>{name}</h1>
         <img src={url} alt={name}></img>
-        <p>Type: {type}</p>
-        <p>EXP: {base_experience}</p>
+        <p className='data'>Type: {type}</p>
+        <p className='data'>EXP: {base_experience}</p>
       </div>
     );
   }
