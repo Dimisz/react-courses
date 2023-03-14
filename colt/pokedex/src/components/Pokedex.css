@@ -1,7 +1,7 @@
-/* .wrapper {
+.wrapper {
   width: 95%;
   text-align: center;
-} */
+}
 
 .cards {
   display: flex;
@@ -11,4 +11,8 @@
 
 .winner {
   background-color: aquamarine;
+}
+
+.loser {
+  background-color: rgb(241, 156, 156);
 }
