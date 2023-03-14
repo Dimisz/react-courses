@@ -1,9 +1,9 @@
 import React from 'react';
-import Pokedex from './components/Pokedex';
+import Pokegame from './components/Pokegame';
 
 class App extends React.Component {
   render(){
-    return <Pokedex/>;
+    return <Pokegame/>;
   }
 }
 

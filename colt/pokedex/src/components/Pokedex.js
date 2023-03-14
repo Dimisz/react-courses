@@ -18,8 +18,8 @@ class Pokedex extends React.Component {
   };
   render(){
     return(
-      <div className='wrapper'>
-        <h1>Pokedex</h1>
+      <div className={`wrapper ${this.props.winner ? 'winner' : ''}`}>
+        <h1>Total EXP: {this.props.exp}</h1>
         <div className='cards'>
           {this.props.pokemons.map((pokemon) => {
             return <Pokecard key={pokemon.id} pokemon={pokemon}/>

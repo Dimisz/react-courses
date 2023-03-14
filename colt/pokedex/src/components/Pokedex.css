@@ -8,3 +8,7 @@
   justify-content: space-evenly;
   flex-wrap: wrap;
 }
+
+.winner {
+  background-color: aquamarine;
+}
