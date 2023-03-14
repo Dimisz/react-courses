@@ -1,12 +1,18 @@
 import React from 'react';
 import Dice from './Dice';
 
+import './RollDice.css';
+
 class RollDice extends React.Component {
+  static defaultProps = {
+    sides: ['one', 'two', 'three', 'four', 'five', 'six'],
+  }
+
   constructor(props){
     super(props);
     this.state = {
-      num1: 1,
-      num2: 1,
+      die1: 'one',
+      die2: 'one',
       rolling: false
     }
     this.roll = this.roll.bind(this);
@@ -17,19 +23,21 @@ class RollDice extends React.Component {
       rolling: true
     });
     setTimeout(() => this.setState({ 
-      num1: Math.floor(Math.random() * 6) + 1,
-      num2: Math.floor(Math.random() * 6) + 1,
+      die1: this.props.sides[Math.floor(Math.random() * this.props.sides.length)],
+      die2: this.props.sides[Math.floor(Math.random() * this.props.sides.length)],
       rolling: false
-    }), 2500);
+    }), 500);
   }
 
   render(){
     return(
-      <>
-        <Dice num={this.state.num1} />
-        <Dice num={this.state.num2} />
+      <div className='roll-dice'>
+        <div className='dice-container'>
+          <Dice face={this.state.die1} />
+          <Dice face={this.state.die2} />
+        </div>
         <button onClick={this.roll}>{this.state.rolling ? 'Rolling...' : 'ROLL'}</button>
-      </>
+      </div>
 
     )
   }
