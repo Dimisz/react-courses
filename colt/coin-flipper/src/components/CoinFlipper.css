@@ -1,0 +1,13 @@
+.container {
+  text-align: center;
+}
+.image {
+  display: inline-block;
+  width: 20%;
+}
+
+.btn {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
