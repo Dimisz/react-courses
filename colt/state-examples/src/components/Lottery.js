@@ -31,8 +31,8 @@ class Lottery extends React.Component {
       <section className='lottery'>
         <h1>{this.props.title}</h1>
         <div>
-          {this.state.nums.map((num) => {
-            return <Ball key={num} num={num} />
+          {this.state.nums.map((num, i) => {
+            return <Ball key={`${num}${i}`} num={num} />
           })}
         </div>
         <button onClick={this.handleClick}>Generate</button>
