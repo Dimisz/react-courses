@@ -1,24 +1,24 @@
 import React from 'react';
+import { chooseColor } from './helpers';
+
 import './Box.css';
 
 class Box extends React.Component {
+  static defaultProps = {
+    colors: ['red', 'green', 'blue', 'white', 'black', 'yellow', 'purple']
+  }
   constructor(props){
     super(props);
-    this.state = { color: this.pickRandomColor() };
+    this.state = { color: chooseColor(this.props.colors) };
     this.changeColor = this.changeColor.bind(this);
-    this.pickRandomColor = this.pickRandomColor.bind(this);
-  }
-
-  pickRandomColor(){
-    const colors = ['red', 'green', 'blue', 'white', 'black', 'yellow', 'purple'];
-    return colors[Math.floor(Math.random() * colors.length)];
   }
 
   changeColor(){
-    let randomColor = this.pickRandomColor();
-    while(randomColor === this.state.color){
-      randomColor = this.pickRandomColor();
-    }
+    let randomColor;
+    do {
+      randomColor = chooseColor(this.props.colors);
+    } while(randomColor === this.state.color);
+    
     this.setState((st) => {return {color: randomColor}});
   }
 

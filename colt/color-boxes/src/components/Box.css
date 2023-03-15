@@ -1,6 +1,5 @@
 .box {
-  display: inline-block;
-  width: 200px;
-  height: 200px;
+  width: 10em;
+  height: 10em;
   margin: 1px;
 }
