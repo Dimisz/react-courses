@@ -1,9 +1,12 @@
 import React from 'react';
-import ScoreKeeper from './components/ScoreKeeper';
+import './App.css';
+// import ScoreKeeper from './components/ScoreKeeper';
+import Ball from './components/Ball';
+
 class App extends React.Component {
   render(){
     return(
-      <ScoreKeeper/>
+      <Ball num={1}/>
     );
   }
 }
