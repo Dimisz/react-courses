@@ -1,8 +1,24 @@
 import React from 'react';
 
+import Accordion from './components/Accordion';
+
+const items = [
+  {
+    title: 'What is React?',
+    content: 'React is a JavaScript library'
+  }, 
+  {
+    title: 'What is JavaScript?',
+    content: 'JavaScript is a programming language'
+  },
+  {
+    title: 'What is CSS?',
+    content: 'CSS is a cascading stysheet'
+  }
+]
 const App = () => {
   return(
-    <h1>Widgets App</h1>
+    <div><Accordion items={items}/></div>
   );
 }
 
