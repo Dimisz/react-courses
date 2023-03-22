@@ -29,12 +29,18 @@ const Search = () => {
         }
       });
       setResults(data.query.search);
-      console.log(results);
-      console.log(term);
+      // console.log(results);
+      // console.log(term);
     };
 
-    if(term){search();}
+    const timeoutId = setTimeout(() => {
+      if(term){search();}
+    }, 500);
 
+    //CLEANUP TO CANCEL PREVIOUS TIMEOUT 
+    return () => {
+      clearTimeout(timeoutId);
+    };
   }, [term]);
 
   const renderedResults = results.map((result) => {
