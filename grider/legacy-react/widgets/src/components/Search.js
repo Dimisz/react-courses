@@ -3,7 +3,8 @@ import axios from 'axios';
 
 const Search = () => {
   const [term, setTerm] = useState('');
-  
+  const [results, setResults] = useState([]);
+
   useEffect(() => {
     // first approach
     // (async () => {
@@ -18,7 +19,7 @@ const Search = () => {
 
     //  RECOMMENDED APPROACH
     const search = async () => {
-      await axios.get('https://en.wikipedia.org/w/api.php', {
+      const { data } = await axios.get('https://en.wikipedia.org/w/api.php', {
         params: {
           action: 'query',
           list: 'search',
@@ -27,20 +28,38 @@ const Search = () => {
           srsearch: term
         }
       });
+      setResults(data.query.search);
+      console.log(results);
+      console.log(term);
     };
-    search();
+
+    if(term){search();}
 
   }, [term]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(term);
-  }
-
+  const renderedResults = results.map((result) => {
+    return(
+      <div className='item' key={result.pageid}>
+        <div className='right floated content'>
+          <a 
+            className='ui button'
+            href={`https://en.wikipedia.org?curid=${result.pageid}`}
+            target='_blank'
+          >Go</a>
+        </div>
+        <div className='content'>
+          <div className='header'>
+            {result.title}
+          </div>
+          <span dangerouslySetInnerHTML={{ __html: result.snippet }}></span>
+        </div>
+      </div>
+    )
+  })
   return(
     <div>
-      <div className='ui form' onSubmit={handleSubmit}>
-        <form className='field'>
+      <div className='ui form'>
+        <div className='field'>
           <label htmlFor='search-field'>Enter Search Term</label>
           <input 
               id='search-field' 
@@ -49,8 +68,9 @@ const Search = () => {
               value={term}
               onChange={(e) => setTerm(e.target.value)}
           />
-        </form>
+        </div>
       </div>
+      <div className='ui celled list'>{renderedResults}</div>
     </div>
   );
 }
