@@ -1,8 +1,8 @@
 import React from 'react';
 
 // import Accordion from './components/Accordion';
-
-import Search from './components/Search';
+import Dropdown from './components/Dropdown';
+// import Search from './components/Search';
 
 const items = [
   {
@@ -17,12 +17,28 @@ const items = [
     title: 'What is CSS?',
     content: 'CSS is a cascading stysheet'
   }
+];
+
+const dropdownOptions = [
+  {
+    label: 'The Color of Red',
+    value: 'red'
+  },
+  {
+    label: 'The Color of Green',
+    value: 'green'
+  },
+  {
+    label: 'The Color of Blue',
+    value: 'blue'
+  }
 ]
 const App = () => {
   return(
     <div>
       {/* <Accordion items={items}/> */}
-      <Search />
+      {/* <Search /> */}
+      <Dropdown options={dropdownOptions}/>
     </div>
   );
 }
