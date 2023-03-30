@@ -6,9 +6,7 @@ class BoxList extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      boxes: [
-        {width: 40, height: 40, backgroundColor: 'red', id: Math.random()}
-      ]
+      boxes: []
     };
 
     this.renderBoxes = this.renderBoxes.bind(this);
@@ -33,7 +31,7 @@ class BoxList extends React.Component {
       this.state.boxes.map((box) => {
         return(
            <div key={box.id}>
-             <div style={{width: +box.width, height: +box.height, backgroundColor: box.backgroundColor}}></div>
+             <div style={{width: `${box.width}em`, height: `${box.height}em`, backgroundColor: box.backgroundColor}}></div>
              <button onClick={() => this.deleteBox(box.id)}>Delete box</button>
            </div>
         );
