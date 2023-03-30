@@ -1,5 +1,6 @@
 import React from 'react';
 
+import BoxList from './components/BoxList';
 class App extends React.Component {
   constructor(props){
     super(props);
@@ -7,7 +8,7 @@ class App extends React.Component {
 
   render(){
     return(
-      <div>App</div>
+      <div><BoxList /></div>
     )
   }
 }
