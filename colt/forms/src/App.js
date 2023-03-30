@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Form from './components/Form';
+import ShoppingList from './components/ShoppingList';
 
 class App extends React.Component {
   constructor(props){
@@ -9,7 +9,7 @@ class App extends React.Component {
 
   render(){
     return(
-      <Form />
+      <ShoppingList />
     );
   }
 }
