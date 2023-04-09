@@ -4,10 +4,13 @@ import SongList from './components/SongList';
 
 const App = () => {
   return(
-    <>
-      <h1>First redux app</h1>
-      <SongList />
-    </>
+    <div className='ui container grid'>
+      <div className='ui row'>
+        <div className='column eight wide'>
+          <SongList />
+        </div>
+      </div>
+    </div>
   );
 }
 
