@@ -1,4 +1,5 @@
 import React from 'react';
+import uuid from 'react-uuid';
 
 import Todo from './Todo';
 import NewTodoForm from './NewTodoForm';
@@ -7,22 +8,41 @@ class TodoList extends React.Component {
   constructor(props){
     super(props);
     this.state = {todos: [
-      {task: 'Walk the fish'},
-      {task: 'Groom chickens'}
+      { 
+        id: uuid(),
+        task: 'Walk the fish'
+      },
+      {
+        id: uuid(),
+        task: 'Groom chickens'
+      }
     ]};
     this.addToDo = this.addToDo.bind(this);
+    this.deleteToDo = this.deleteToDo.bind(this);
   }
 
   addToDo(todo){
     this.setState({todos: [...this.state.todos, todo]});
-    this.state.todos.map((todo) => {
-      console.log(todo);
+  }
+
+  deleteToDo(todoId){
+    this.setState({
+      todos: this.state.todos.filter((todo) => {
+        return todo.id !== todoId;
+      })
     })
   }
 
   render(){
     const todos = this.state.todos.map((todo) => {
-      return <Todo key={todo.task} task={todo.task} />
+      return( 
+        <Todo 
+          key={todo.id} 
+          task={todo.task} 
+          id={todo.id}
+          handleDelete={this.deleteToDo}
+        />
+      );
     });
 
     return(

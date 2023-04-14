@@ -1,4 +1,5 @@
 import React from 'react';
+import uuid from 'react-uuid';
 
 class NewTodoForm extends React.Component {
   constructor(props){
@@ -11,9 +12,14 @@ class NewTodoForm extends React.Component {
 
   handleSubmit(e){
     e.preventDefault();
-    this.props.addToDo({task: this.state.task});
-    console.log(`from the form, task: ${this.state.task}`);
+    this.props.addToDo({
+      id: uuid(),
+      task: this.state.task
+    });
+    // console.log(`from the form, task: ${this.state.task}`);
+    this.setState({task: ''});
   }
+
   render(){
     return(
       <form onSubmit={this.handleSubmit}>
