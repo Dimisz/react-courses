@@ -3,6 +3,7 @@ import Panel from './Panel';
 
 const CounterPage = ({initialCount}) => {
   const [count, setCount] = useState(initialCount);
+  const [enteredValue, setEnteredValue] = useState(0);
 
   const increment = () => {
     setCount((count) => {
@@ -16,6 +17,18 @@ const CounterPage = ({initialCount}) => {
     });
   }
 
+  const handleChange = (e) => {
+    setEnteredValue(e.target.value);
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setCount((count) => {
+      return count + Number(enteredValue);
+    });
+    setEnteredValue(0);
+  }
+
   return(
     <Panel className="p-8 outline outline-blue-500 rounded m-3 flex flex-col items-center">
       <h1 className='text-xl block'>Count is {count}</h1>
@@ -23,9 +36,17 @@ const CounterPage = ({initialCount}) => {
           <button className="m-5 p-3 outline outline-blue-500 rounded" onClick={increment}> + </button>
           <button className="m-5 p-3 outline outline-blue-500 rounded" onClick={decrement}> - </button>
         </div>
-        <form className='flex flex-col items-center mt-5'>
+        <form 
+          className='flex flex-col items-center mt-5'
+          onSubmit={handleSubmit}
+        >
           <label>Add A Lot!</label>
-          <input className='p-1 m-3 bg-gray-50 border border-gray-300' type="number" />
+          <input 
+            className='p-1 m-3 bg-gray-50 border border-gray-300' 
+            type="number" 
+            value={enteredValue}
+            onChange={handleChange}
+          />
           <button className='mt-5 pt-3 pb-3 pr-10 pl-10 outline outline-blue-500 rounded block'>Add It</button>
         </form>
     </Panel>
