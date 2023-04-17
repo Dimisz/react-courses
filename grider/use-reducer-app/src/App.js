@@ -4,7 +4,7 @@ import CounterPage from './components/CounterPage';
 
 const App = () => {
   return(
-    <CounterPage initialCount={10} />
+    <CounterPage initialCount={100} />
   );
 }
 
