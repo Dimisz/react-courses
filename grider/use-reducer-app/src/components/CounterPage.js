@@ -2,29 +2,60 @@
 import { useReducer } from 'react';
 import Panel from './Panel';
 
+const INCREMENT_COUNT = 'increment-count';
+const DECREMENT_COUNT = 'decrement-count';
+const CHANGE_VALUE = 'change-value';
+const SUBMIT = 'submit';
+
 const reducer = (state, action) => {
-  if(action.type === 'increment-count'){
+  switch(action.type){
+    case INCREMENT_COUNT:
+      return {
+        ...state,
+        count: state.count + 1
+      };
+    case DECREMENT_COUNT:
+      return {
+        ...state,
+        count: state.count - 1
+      };
+    case CHANGE_VALUE:
+      return {
+        ...state,
+        enteredValue: action.payload
+      };
+    case SUBMIT:
+      return {
+        ...state,
+        count: state.count + state.enteredValue,
+        enteredValue: 0
+      };
+    default:
+      return state;
+  }
+  /*
+  if(action.type === INCREMENT_COUNT){
     return {
       ...state,
       count: state.count + 1
     };
   }
 
-  if(action.type === 'decrement-count'){
+  if(action.type === DECREMENT_COUNT){
     return {
       ...state,
       count: state.count - 1
     };
   }
 
-  if(action.type === 'value-change'){
+  if(action.type === CHANGE_VALUE){
     return {
       ...state,
       enteredValue: action.payload
     };
   }
 
-  if(action.type === 'submit'){
+  if(action.type === SUBMIT){
     return {
       ...state,
       count: state.count + state.enteredValue,
@@ -33,6 +64,7 @@ const reducer = (state, action) => {
   }
 
   return state;
+  */
 };
 
 const CounterPage = ({initialCount}) => {
@@ -50,7 +82,7 @@ const CounterPage = ({initialCount}) => {
     //   return count + 1;
     // });
     dispatch({
-      type: 'increment-count'
+      type: INCREMENT_COUNT
     });
   }
 
@@ -59,7 +91,7 @@ const CounterPage = ({initialCount}) => {
     //   return count - 1;
     // });
     dispatch({
-      type: 'decrement-count'
+      type: DECREMENT_COUNT
     });
   }
 
@@ -67,7 +99,7 @@ const CounterPage = ({initialCount}) => {
     const val = parseInt(e.target.value) || 0;
     // setEnteredValue(val);
     dispatch({
-      type: 'value-change',
+      type: CHANGE_VALUE,
       payload: val
     });
   }
@@ -80,7 +112,7 @@ const CounterPage = ({initialCount}) => {
     // });
     // setEnteredValue(0);
     dispatch({
-      type: 'submit'
+      type: SUBMIT
     });
   }
 
