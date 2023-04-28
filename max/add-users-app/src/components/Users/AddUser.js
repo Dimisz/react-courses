@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 import Card from "../UI/Card";
 import Button from "../UI/Button";
@@ -7,8 +7,8 @@ import ErrorModal from '../UI/ErrorModal';
 import styles from './AddUser.module.css';
 
 const AddUser = ({addUser}) => {
-  const [enteredUsername, setEnteredUsername] = useState('');
-  const [enteredAge, setEnteredAge] = useState('');
+  const nameInputRef = useRef();
+  const ageInputRef = useRef();
 
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [errorTitle, setErrorTitle] = useState('');
@@ -22,7 +22,10 @@ const AddUser = ({addUser}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(enteredUsername.trim().length === 0){
+    const enteredName = nameInputRef.current.value;
+    const enteredAge = ageInputRef.current.value;
+    // console.log(age)
+    if(enteredName.trim().length === 0){
       setErrorTitle('Invalid Name');
       setErrorMessage('Name field should not be empty');
       setShowErrorModal(true);
@@ -40,13 +43,13 @@ const AddUser = ({addUser}) => {
     else {
       const user = {
         id: Math.random(),
-        name: enteredUsername,
-        age: enteredAge
+        name: enteredName.trim(),
+        age: enteredAge.trim()
       };
 
       addUser(user);
-      setEnteredUsername('');
-      setEnteredAge('');
+      nameInputRef.current.value = '';
+      ageInputRef.current.value = '';
     }
   }
 
@@ -66,15 +69,13 @@ const AddUser = ({addUser}) => {
           <input 
             type='text' 
             id='username' 
-            value={enteredUsername}
-            onChange={(e) => {setEnteredUsername(e.target.value)}}
+            ref={nameInputRef}
           />
           <label htmlFor='age'>Age (Years)</label>
           <input 
             type='number' 
             id='age' 
-            value={enteredAge}
-            onChange={(e) => {setEnteredAge(e.target.value)}}
+            ref={ageInputRef}
           />
           <Button type='submit'>
             Add User
