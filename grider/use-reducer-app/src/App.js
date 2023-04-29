@@ -1,46 +1,42 @@
 import './App.css';
-import { useState, useReducer } from 'react';
+import { useReducer } from 'react';
+
+const INCREMENT_VALUE = 'INCREMENT';
+const DECREMENT_VALUE = 'DECREMENT';
+const CHANGE_VALUE = 'CHANGE_VALUE';
+const ADD_VALUE = 'ADD_VALUE';
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'INCREMENT':
+    case INCREMENT_VALUE:
       return {
         ...state,
         count: state.count + 1
       }
-      break;
-    case 'DECREMENT':
+    case DECREMENT_VALUE:
       return {
         ...state,
         count: state.count - 1
       }
-      break;
-    case 'CHANGE_VALUE':
+    case CHANGE_VALUE:
       return {
         ...state,
         valueToAdd: action.payload
       }
-      break;
-    case 'ADD_VALUE':
+    case ADD_VALUE:
       return {
         ...state,
         count: state.count + Number(state.valueToAdd),
         valueToAdd: ''
       }
-      break;
-      
     default:
-      break;
-  }
-  return {
-    ...state,
-    count: state.count + 1
+      return {
+        ...state
+      }
   }
 }
 
 const App = () => {
-  // const [count, setCount] = useState(0);
-  // const [valueToAdd, setValueToAdd] = useState('');
   const [state, dispatch] = useReducer(reducer, {
     count: 0,
     valueToAdd: ''
@@ -48,30 +44,20 @@ const App = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // setCount((prev) => {
-    //   return prev + Number(valueToAdd.trim());
-    // });
-    // setValueToAdd('');
     dispatch({
-      type: 'ADD_VALUE'
+      type: ADD_VALUE
     })
   }
 
   const increment = () => {
-    // setCount((prev) => {
-    //   return prev + 1;
-    // });
     dispatch({
-      type: 'INCREMENT'
+      type: INCREMENT_VALUE
     });
   };
 
   const decrement = () => {
-    // setCount((prev) => {
-    //   return prev - 1;
-    // });
     dispatch({
-      type: 'DECREMENT'
+      type: DECREMENT_VALUE
     });
   };
 
@@ -88,7 +74,7 @@ const App = () => {
           type="number" 
           value={state.valueToAdd}
           onChange={(e) => {dispatch({
-            type: 'CHANGE_VALUE', 
+            type: CHANGE_VALUE, 
             payload: e.target.value
           })}}
         />
