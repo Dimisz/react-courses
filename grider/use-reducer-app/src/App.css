@@ -1,0 +1,48 @@
+main {
+  width: 70%;
+  background-color: antiquewhite;
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 0;
+}
+
+div > button{
+  max-width: 10rem;
+  width: 30%;
+  padding: .5rem;
+  margin: 5% 2%;
+  border: 1px solid turquoise;
+  border-radius: 10px;
+}
+
+div > button:hover {
+  background: turquoise;
+}
+
+form > input{
+  display: block;
+  width: 60%;
+  margin: auto;
+  padding: .5rem;
+  border: 1px solid turquoise;
+  border-radius: 10px;
+}
+form > input:focus {
+  background: turquoise;
+}
+
+form > button{
+  width: 60%;
+  padding: .5rem;
+  margin: 5% 2%;
+  border: 1px solid turquoise;
+  border-radius: 10px;
+}
+
+form > button:hover {
+  background: turquoise;
+}
