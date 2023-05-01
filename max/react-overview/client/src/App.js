@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 import PostsList from "./components/PostsList";
 const posts = [
-  
 ];
 
 const App = () => {
@@ -11,6 +10,13 @@ const App = () => {
   const addPost = (post) => {
     setAllPosts((prev) => {
       return [...prev, post];
+    });
+    fetch('http://localhost:8080/posts', {
+      method: 'POST',
+      body: JSON.stringify(post),
+      headers:{
+        'Content-Type': 'application/json'
+      }
     });
   }
 

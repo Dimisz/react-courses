@@ -10,7 +10,6 @@ const NewPost = ({addPost, hideModal}) => {
     e.preventDefault();
   
     const newPost = {
-      id: Math.random(),
       author: name.trim(),
       text: text.trim()
     }
