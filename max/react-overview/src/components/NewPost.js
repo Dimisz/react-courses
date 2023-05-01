@@ -45,6 +45,10 @@ const NewPost = ({addPost, hideModal}) => {
           onChange={(e) => {setName(e.target.value)}}
         />
       </p>
+      <div className={styles.actions}>
+        <button onClick={hideModal}>Cancel</button>
+        <button type='submit'>Submit</button>
+      </div>
     </form>
   );
 }

@@ -2,21 +2,7 @@ import { useState } from 'react';
 
 import PostsList from "./components/PostsList";
 const posts = [
-  {
-    id: 'p1',
-    author: 'Vladimir Solovyov',
-    text: 'React is awesome!'
-  },
-  {
-    id: 'p2',
-    author: 'John Doe',
-    text: 'It\'s really worth learning React!'
-  },
-  {
-    id: 'p3',
-    author: 'Peter Johnsson',
-    text: 'Coding is tough. But worth it.'
-  }
+  
 ];
 
 const App = () => {

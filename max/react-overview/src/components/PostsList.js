@@ -5,6 +5,7 @@ import Post from './Post';
 import NewPost from './NewPost';
 import EditPost from './EditPost';
 import Modal from './Modal';
+import MainHeader from './MainHeader';
 
 const PostsList = ({posts, addPost, editPost}) => {
   // const [modalIsVisible, setModalIsVisile] = useState(true);
@@ -37,6 +38,7 @@ const PostsList = ({posts, addPost, editPost}) => {
   })
   return(
     <>
+    <MainHeader onCreatePost={handleAddNew}/>
       {isEditing &&
         <Modal hideModal={hideModal}>
           <EditPost 
@@ -51,11 +53,17 @@ const PostsList = ({posts, addPost, editPost}) => {
           <NewPost addPost={addPost} hideModal={hideModal}/>
        </Modal>
       }
-      
+      {posts.length === 0 ?
+        <div style={{ textAlign: 'center', color: 'white'}}>
+          <h2>There are no posts yet</h2>
+          <p>Start adding posts</p>
+        </div>
+      :
       <ul className={styles.posts}>
         {renderedPosts}
       </ul>
-      <button onClick={handleAddNew}>Add New</button>
+    }
+      
     </>
   );
 }

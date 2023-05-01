@@ -5,7 +5,11 @@ const Post = ({post, handleEdit}) => {
       <li className={styles.post}>
         <h2 className={styles.author}>{post.author}</h2>
         <p className={styles.text}>{post.text}</p>
-        <button onClick={() => handleEdit(post)} >Edit</button>
+        <div className={styles.actions}>
+          <button onClick={() => handleEdit(post)} >
+            Edit
+          </button>
+        </div>
       </li>
   );
 }
