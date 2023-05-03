@@ -1,0 +1,1 @@
+This folder contains code-along projects taught by Maximilian Schwarzmueller on Udemy.
