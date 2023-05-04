@@ -1,22 +1,25 @@
-import { useState } from "react";
-
-const monstersList = [
-  {
-    name: 'Linda'
-  },
-  {
-    name: 'Frank'
-  },
-  {
-    name: 'Jacky'
-  },
-];
+import { useState, useEffect } from "react";
 
 const App = () => {
-  
-  const [monsters, setMonsters] = useState(monstersList);
+  const [monsters, setMonsters] = useState([]);
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then((data) => data.json())
+    .then((users) => setMonsters(
+      () => {
+        return [...users];
+      }
+    ));
+    // console.log(res);
+  }, []);
+
+
   const renderedMonsters = monsters.map((monster) => {
-    return <h1 key={monster.name}>{monster.name}</h1>
+    return(
+      <div key={monster.id}>
+        <h1>{monster.name}</h1>
+      </div>
+    );
   });
 
   return(
