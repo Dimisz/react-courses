@@ -1,20 +1,27 @@
 import { useState, useEffect } from "react";
+import SearchBar from "./SearchBar";
 
 const App = () => {
   const [monsters, setMonsters] = useState([]);
+  const [filteredMonsters, setFilteredMonsters] = useState([]);
+
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/users')
     .then((data) => data.json())
-    .then((users) => setMonsters(
-      () => {
-        return [...users];
-      }
-    ));
+    .then((users) => {
+      setMonsters(users);
+      setFilteredMonsters(users);
+    });
     // console.log(res);
   }, []);
 
+  const filterHandler = (monstersList) => {
+    setFilteredMonsters(() => {
+      return [...monstersList]
+    })
+  }
 
-  const renderedMonsters = monsters.map((monster) => {
+  const renderedMonsters = filteredMonsters.map((monster) => {
     return(
       <div key={monster.id}>
         <h1>{monster.name}</h1>
@@ -24,6 +31,7 @@ const App = () => {
 
   return(
     <>
+      <SearchBar monsters={monsters} filterHandler={filterHandler}/>
       {renderedMonsters}
     </>
   );
