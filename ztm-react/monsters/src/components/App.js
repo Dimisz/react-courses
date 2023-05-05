@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
-import SearchBar from "./SearchBar";
+import SearchBar from "./SearchBar/SearchBar";
+import CardList from "./CardList/CardList";
+
+import './App.css';
 
 const App = () => {
   const [monsters, setMonsters] = useState([]);
@@ -21,18 +24,12 @@ const App = () => {
     })
   }
 
-  const renderedMonsters = filteredMonsters.map((monster) => {
-    return(
-      <div key={monster.id}>
-        <h1>{monster.name}</h1>
-      </div>
-    );
-  });
+  
 
   return(
     <>
       <SearchBar monsters={monsters} filterHandler={filterHandler}/>
-      {renderedMonsters}
+      <CardList monsters={filteredMonsters}/>
     </>
   );
 }

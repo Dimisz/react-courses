@@ -1,3 +1,5 @@
+import './SearchBar.css';
+
 const SearchBar = ({monsters, filterHandler}) => {
   const handleFilter = (e) => {
     const foundMonsters = monsters.filter((monster) => {
