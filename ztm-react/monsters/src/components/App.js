@@ -28,6 +28,7 @@ const App = () => {
 
   return(
     <>
+    <h1 className='app-title'>Monsters Rolodex</h1>
       <SearchBar monsters={monsters} filterHandler={filterHandler}/>
       <CardList monsters={filteredMonsters}/>
     </>
