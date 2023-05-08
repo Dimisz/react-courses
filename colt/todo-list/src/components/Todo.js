@@ -3,6 +3,10 @@ import React from 'react';
 class Todo extends React.Component {
   constructor(props){
     super(props);
+    this.state = {
+      isEditing: false
+    }
+
     this.handleDelete = this.handleDelete.bind(this);
   }
 
@@ -10,6 +14,11 @@ class Todo extends React.Component {
     this.props.handleDelete(this.props.id);
   }
   render(){
+    if(this.state.isEditing){
+      return(
+        
+      )
+    }
     return(
       <div>
         <button>Edit</button>
