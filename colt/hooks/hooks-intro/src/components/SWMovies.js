@@ -12,6 +12,7 @@ const SWMovies = () => {
         director: res.data.director,
         title: res.data.title
       });
+      console.log('request sent');
     }
     getData();
   }, [selected]);
