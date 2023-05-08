@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import './Deck.css';
 
 import Card from './Card';
 
@@ -16,8 +17,14 @@ class Deck extends React.Component {
   }
 
   async getCard(){
-    const deck_id = this.state.deck.deck_id;
+    const angle = Math.random() * 90 - 45;
+    const xPos = Math.random() * 40 - 20;
+    const yPos = Math.random() * 40 - 20;
+    const transform = `translate(${xPos}px, ${yPos}px) rotate(${angle}deg)`;
+
+    
     try {
+      const deck_id = this.state.deck.deck_id;
       const cardUrl = `${API_BASE_URL}/${deck_id}/draw`
       const cardRes = await axios.get(cardUrl);
       if(cardRes.data.remaining === 0){
@@ -31,13 +38,14 @@ class Deck extends React.Component {
           {
             id: card.code,
             image: card.image,
-            name: `${card.suit} ${card.value}`
+            name: `${card.suit} ${card.value}`,
+            transformStyle: transform
           }
         ]
       }))
     }
-    catch(err){
-      alert(err);
+    catch(TypeError){
+      alert("Hasn't fetched the deck yet. Wait a second");
     }
     
     
@@ -57,6 +65,7 @@ class Deck extends React.Component {
           key={card.id}
           name={card.name}
           image={card.image}
+          transformStyle={card.transformStyle}
         />
       )
     });
@@ -65,7 +74,7 @@ class Deck extends React.Component {
       <div>
         <h1>Card Dealer</h1>
         <button onClick={this.getCard}>Get Card</button>
-        {cards}
+        <div className='deck-cardarea'>{cards}</div>
       </div>
     )
   }
