@@ -18,6 +18,10 @@ class ZenQuote extends React.Component {
         );
       })
   }
+
+  componentDidUpdate(){
+    console.log('did update');
+  }
   render(){
     return(
       <div>

@@ -10,7 +10,8 @@ class App extends React.Component {
 
   render(){
     return(
-      <GitHubUserInfo username='Dimisz'/>
+      // <GitHubUserInfo username='Dimisz'/>
+      <ZenQuote/>
     );
   }
 }
