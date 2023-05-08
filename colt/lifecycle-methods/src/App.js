@@ -2,6 +2,7 @@ import React from 'react';
 
 import Timer from './components/Timer';
 import ZenQuote from './components/ZenQuote';
+import GitHubUserInfo from './components/GithubUserInfo';
 class App extends React.Component {
   constructor(props){
     super(props);
@@ -9,7 +10,7 @@ class App extends React.Component {
 
   render(){
     return(
-      <ZenQuote/>
+      <GitHubUserInfo username='Dimisz'/>
     );
   }
 }

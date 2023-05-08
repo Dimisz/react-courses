@@ -4,7 +4,7 @@ import axios from 'axios';
 class ZenQuote extends React.Component {
   constructor(props){
     super(props);
-    this.state = {quote: ''};
+    this.state = { quote: '', isLoaded: false };
   }
 
   componentDidMount(){
@@ -12,7 +12,7 @@ class ZenQuote extends React.Component {
       .then((res) => {
         setTimeout(
           function(){
-            this.setState({quote: res.data});
+            this.setState({ quote: res.data, isLoaded: true });
           }.bind(this),
           3000
         );
@@ -21,9 +21,16 @@ class ZenQuote extends React.Component {
   render(){
     return(
       <div>
-        <div className='loader'></div>
-        <h1>Always remember...</h1>
-        <p>{this.state.quote}</p>
+        {
+          this.state.isLoaded 
+          ?
+          <div>
+            <h1>Always remember...</h1>
+            <p>{this.state.quote}</p>
+          </div> 
+          :
+          <div className='loader'>Loading</div>
+        }
       </div>
     )
   }
