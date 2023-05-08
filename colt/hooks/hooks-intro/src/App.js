@@ -1,6 +1,10 @@
+import Counter from "./components/Counter";
+import Toggler from "./components/Toggler";
 const App = () => {
+  
   return(
-    <h1>Hooks Intro</h1>
+    // <Counter/>
+    <Toggler/>
   );
 }
 
