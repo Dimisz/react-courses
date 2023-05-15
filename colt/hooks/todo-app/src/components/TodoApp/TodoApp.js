@@ -2,11 +2,40 @@ import {
   Paper, 
   AppBar,
   Toolbar,
-  Typography 
+  Typography,
+  Grid
 } from "@mui/material";
+import { useState } from 'react';
 
+import TodoList from "../TodoList/TodoList";
+import TodoForm from "../TodoForm/TodoForm";
 
 const TodoApp = () => {
+  const initialTodos = [
+    { id: 1, task: 'Clean Fishtank', completed: false },
+    { id: 2, task: 'Wash Car', completed: true },
+    { id: 3, task: 'Grow Beard', completed: false }
+  ];
+  const [todos, setTodos] = useState(initialTodos);
+
+  const addTodo = (todoText) => {
+    const newTodo = {
+      id: Math.random(),
+      task: todoText.trim(),
+      completed: false
+    }
+    setTodos((prev) => {
+      return [...prev, newTodo]
+    });
+  }
+
+  const removeTodo = (todoId) => {
+    const updatedTodos = todos.filter((todo) => {
+      return todo.id !== todoId;
+    });
+    setTodos(updatedTodos);
+  }
+
   return(
     <Paper 
       style={{
@@ -26,6 +55,15 @@ const TodoApp = () => {
             <Typography color='inherit'>TODOS WITH HOOKS</Typography>
           </Toolbar>
         </AppBar>
+        <Grid container justify='center' style={{
+          marginTop: '1rem',
+          justifyContent: 'center'
+        }}>
+          <Grid item xs={11} md={8} lg={4}>
+            <TodoForm addTodo={addTodo}/>
+            <TodoList todos={todos} onRemove={removeTodo}/>
+          </Grid>
+        </Grid>
       </Paper>
   );
 }
