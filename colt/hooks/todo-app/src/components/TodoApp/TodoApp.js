@@ -36,6 +36,14 @@ const TodoApp = () => {
     setTodos(updatedTodos);
   }
 
+  const toggleCompletedStatus = (todoId) => {
+    const updatedTodos = todos.map((todo) => (
+      todo.id === todoId ? {...todo, completed: !todo.completed} : todo
+    ))
+    // console.log('clicked');
+    setTodos(updatedTodos);
+  }
+
   return(
     <Paper 
       style={{
@@ -61,7 +69,11 @@ const TodoApp = () => {
         }}>
           <Grid item xs={11} md={8} lg={4}>
             <TodoForm addTodo={addTodo}/>
-            <TodoList todos={todos} onRemove={removeTodo}/>
+            <TodoList 
+              todos={todos} 
+              onRemove={removeTodo}
+              toggleCompletedStatus={toggleCompletedStatus}
+            />
           </Grid>
         </Grid>
       </Paper>

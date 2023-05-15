@@ -10,10 +10,14 @@ import {
   EditOutlined
 } from '@mui/icons-material';
 
-const TodoItem = ({todo, onRemove}) => {
+const TodoItem = ({todo, onRemove, toggleCompletedStatus}) => {
   return(
     <ListItem>
-      <Checkbox checked={todo.completed}tabIndex={-1}/>
+      <Checkbox 
+        checked={todo.completed}
+        tabIndex={-1}
+        onClick={() => toggleCompletedStatus(todo.id)}
+      />
       <ListItemText style={{
         textDecoration: todo.completed ? 'line-through' : 'none'
       }}>

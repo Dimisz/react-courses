@@ -6,10 +6,18 @@ import {
 import { Fragment } from "react";
 import TodoItem from "../TodoItem/TodoItem";
 
-const TodoList = ({todos, onRemove}) => {
+const TodoList = ({
+  todos, 
+  onRemove, 
+  toggleCompletedStatus
+}) => {
   const renderedTodos = todos.map((todo) => (
     <Fragment key={todo.id}>
-      <TodoItem todo={todo} onRemove={onRemove}/>
+      <TodoItem 
+        todo={todo} 
+        onRemove={onRemove}
+        toggleCompletedStatus={toggleCompletedStatus}
+      />
       <Divider/>
     </Fragment>
   ));
