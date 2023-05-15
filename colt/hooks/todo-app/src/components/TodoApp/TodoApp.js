@@ -12,12 +12,8 @@ import TodoList from "../TodoList/TodoList";
 import TodoForm from "../TodoForm/TodoForm";
 
 const TodoApp = () => {
-  const initialTodos = JSON.parse(window.localStorage.getItem('todos') || "[]");
+  const initialTodos = [];
   const { todos, addTodo, removeTodo, editTodo, toggleCompletedStatus } = useTodoState(initialTodos);
-
-  useEffect(() => {
-    window.localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos]);
 
   return(
     <Paper 
