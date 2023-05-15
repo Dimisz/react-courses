@@ -29,6 +29,18 @@ const TodoApp = () => {
     });
   }
 
+  const editTodo = (todo, todoText) => {
+    const editedTodo = {
+      ...todo,
+      task: todoText.trim()
+    }
+    const filteredTodos = todos.filter((todo) => {
+      return todo.id !== editedTodo.id;
+    });
+    const editedTodos = [...filteredTodos, editedTodo];
+    setTodos(editedTodos);
+  }
+
   const removeTodo = (todoId) => {
     const updatedTodos = todos.filter((todo) => {
       return todo.id !== todoId;
@@ -72,6 +84,7 @@ const TodoApp = () => {
             <TodoList 
               todos={todos} 
               onRemove={removeTodo}
+              onEdit={editTodo}
               toggleCompletedStatus={toggleCompletedStatus}
             />
           </Grid>

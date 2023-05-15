@@ -9,6 +9,7 @@ import TodoItem from "../TodoItem/TodoItem";
 const TodoList = ({
   todos, 
   onRemove, 
+  onEdit,
   toggleCompletedStatus
 }) => {
   const renderedTodos = todos.map((todo) => (
@@ -16,6 +17,7 @@ const TodoList = ({
       <TodoItem 
         todo={todo} 
         onRemove={onRemove}
+        onEdit={onEdit}
         toggleCompletedStatus={toggleCompletedStatus}
       />
       <Divider/>
