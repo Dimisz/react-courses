@@ -16,7 +16,7 @@ import {
 const TodoItem = ({todo, onRemove, onEdit, toggleCompletedStatus}) => {
   const [isEditing, toggleIsEditing] = useToggle(false);
   return(
-    <ListItem>
+    <ListItem style={{height: '5rem'}}>
       {
         isEditing 
         ?

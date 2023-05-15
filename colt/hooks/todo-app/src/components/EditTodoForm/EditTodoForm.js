@@ -16,16 +16,23 @@ const EditTodoForm = ({onEdit, todo, toggleIsEditing}) => {
 
   return(
     <Paper style={{
-      margin: '1rem 0',
-      padding: '0 1rem',
+      margin: '0',
+      // padding: '0 1rem',
+      width: '100%'
     }}>
-      <form onSubmit={handleSubmit}>
+      <form 
+        onSubmit={handleSubmit}
+        style={{
+          width: '100%',
+        }}
+      >
         <TextField
           value={value}
           onChange={handleChange}
-          margin='normal'
+          // margin='normal'
           label='Edit Todo'
           fullWidth
+          autoFocus
         />
       </form>
     </Paper>

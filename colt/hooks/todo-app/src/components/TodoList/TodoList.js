@@ -12,7 +12,7 @@ const TodoList = ({
   onEdit,
   toggleCompletedStatus
 }) => {
-  const renderedTodos = todos.map((todo) => (
+  const renderedTodos = todos.map((todo, i) => (
     <Fragment key={todo.id}>
       <TodoItem 
         todo={todo} 
@@ -20,16 +20,20 @@ const TodoList = ({
         onEdit={onEdit}
         toggleCompletedStatus={toggleCompletedStatus}
       />
-      <Divider/>
+      {i < todos.length - 1 && <Divider/>}
     </Fragment>
   ));
 
   return(
-    <Paper>
-      <List>
-        {renderedTodos}
-      </List>
-    </Paper>
+    <>
+      {todos.length > 0 &&
+        <Paper>
+          <List>
+            {renderedTodos}
+          </List>
+        </Paper>
+      }
+    </>
   )
 }
 
