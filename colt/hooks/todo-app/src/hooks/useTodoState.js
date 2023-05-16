@@ -1,6 +1,6 @@
 import useLocalStorageState from "./useLocalStorageState";
 
-export default initialTodos => {
+const useTodoState = (initialTodos) => {
   const [todos, setTodos] = useLocalStorageState("todos", initialTodos);
 
   return {
@@ -41,6 +41,8 @@ export default initialTodos => {
     }
   }
 }
+
+export default useTodoState;
 
 
 

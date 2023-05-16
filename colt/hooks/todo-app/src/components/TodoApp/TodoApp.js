@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import { 
   Paper, 
   AppBar,
@@ -7,18 +6,10 @@ import {
   Grid
 } from "@mui/material";
 
-// import useTodoState from "../../hooks/useTodoState";
-import { TodoContext } from "../../context/TodoContext";
-
 import TodoList from "../TodoList/TodoList";
 import TodoForm from "../TodoForm/TodoForm";
 
 const TodoApp = () => {
-  // const initialTodos = [];
-  // const { todos, addTodo, removeTodo, editTodo, toggleCompletedStatus } = useTodoState(initialTodos);
-  const { todos, addTodo, removeTodo, editTodo, toggleCompletedStatus } = useContext(TodoContext);
-
-
   return(
     <Paper 
       style={{
