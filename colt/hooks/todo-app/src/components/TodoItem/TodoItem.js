@@ -1,5 +1,7 @@
 import useToggle from "../../hooks/useToggle";
 import EditTodoForm from "../EditTodoForm/EditTodoForm";
+import { useContext } from "react";
+import { TodoContext } from "../../context/TodoContext";
 
 import { 
   ListItem, 
@@ -13,14 +15,16 @@ import {
   EditOutlined
 } from '@mui/icons-material';
 
-const TodoItem = ({todo, onRemove, onEdit, toggleCompletedStatus}) => {
+const TodoItem = ({todo}) => {
+  const {removeTodo, editTodo, toggleCompletedStatus} = useContext(TodoContext);
+
   const [isEditing, toggleIsEditing] = useToggle(false);
   return(
     <ListItem style={{height: '5rem'}}>
       {
         isEditing 
         ?
-        <EditTodoForm onEdit={onEdit} todo={todo} toggleIsEditing={toggleIsEditing}/>
+        <EditTodoForm onEdit={editTodo} todo={todo} toggleIsEditing={toggleIsEditing}/>
         :
         <>
           <Checkbox
@@ -34,7 +38,7 @@ const TodoItem = ({todo, onRemove, onEdit, toggleCompletedStatus}) => {
             {todo.task}
           </ListItemText>
           <ListItemSecondaryAction>
-            <IconButton aria-label='delete' onClick={() => onRemove(todo.id)}>
+            <IconButton aria-label='delete' onClick={() => removeTodo(todo.id)}>
               <DeleteForeverOutlined />
             </IconButton>
             <IconButton 

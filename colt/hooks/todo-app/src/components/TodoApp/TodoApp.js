@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { 
   Paper, 
   AppBar,
@@ -5,15 +6,18 @@ import {
   Typography,
   Grid
 } from "@mui/material";
-import { useEffect } from 'react';
-import useTodoState from "../../hooks/useTodoState";
+
+// import useTodoState from "../../hooks/useTodoState";
+import { TodoContext } from "../../context/TodoContext";
 
 import TodoList from "../TodoList/TodoList";
 import TodoForm from "../TodoForm/TodoForm";
 
 const TodoApp = () => {
-  const initialTodos = [];
-  const { todos, addTodo, removeTodo, editTodo, toggleCompletedStatus } = useTodoState(initialTodos);
+  // const initialTodos = [];
+  // const { todos, addTodo, removeTodo, editTodo, toggleCompletedStatus } = useTodoState(initialTodos);
+  const { todos, addTodo, removeTodo, editTodo, toggleCompletedStatus } = useContext(TodoContext);
+
 
   return(
     <Paper 
@@ -39,13 +43,8 @@ const TodoApp = () => {
           justifyContent: 'center'
         }}>
           <Grid item xs={11} md={8} lg={4}>
-            <TodoForm addTodo={addTodo}/>
-            <TodoList 
-              todos={todos} 
-              onRemove={removeTodo}
-              onEdit={editTodo}
-              toggleCompletedStatus={toggleCompletedStatus}
-            />
+            <TodoForm />
+            <TodoList />
           </Grid>
         </Grid>
       </Paper>

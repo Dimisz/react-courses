@@ -3,23 +3,16 @@ import {
   List,
   Divider
  } from "@mui/material";
-import { Fragment } from "react";
-import TodoItem from "../TodoItem/TodoItem";
 
-const TodoList = ({
-  todos, 
-  onRemove, 
-  onEdit,
-  toggleCompletedStatus
-}) => {
+import { Fragment, useContext } from "react";
+import TodoItem from "../TodoItem/TodoItem";
+import { TodoContext } from "../../context/TodoContext";
+
+const TodoList = () => {
+  const { todos } = useContext(TodoContext);
   const renderedTodos = todos.map((todo, i) => (
     <Fragment key={todo.id}>
-      <TodoItem 
-        todo={todo} 
-        onRemove={onRemove}
-        onEdit={onEdit}
-        toggleCompletedStatus={toggleCompletedStatus}
-      />
+      <TodoItem todo={todo} />
       {i < todos.length - 1 && <Divider/>}
     </Fragment>
   ));
