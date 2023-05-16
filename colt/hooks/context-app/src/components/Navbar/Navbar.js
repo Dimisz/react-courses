@@ -5,9 +5,30 @@ import styles from './Navbar.module.css';
 
 import { useContext } from "react";
 import { ThemeContext } from "../../contexts/ThemeContext";
+import { LanguageContext } from "../../contexts/LanguageContext";
+
+const content = {
+  english: {
+    title: 'App',
+    search: 'Search',
+    flag:'🇬🇧'
+  },
+  spanish: {
+    title: 'AppEs',
+    search: 'Buscar',
+    flag:'🇻🇪'
+  },
+  french: {
+    title: 'AppFr',
+    search: 'Chercher',
+    flag:'🇫🇷'
+  }
+}
 
 const Navbar = () => {
   const themeCtx = useContext(ThemeContext);
+  const languageCtx = useContext(LanguageContext);
+  const {title, flag, search} = content[languageCtx.language];
 
   return(
     <div className={styles.root}>
@@ -16,13 +37,13 @@ const Navbar = () => {
           <IconButton 
             className={styles['menu-btn']}
             color='inherit'
-          >🇨🇰</IconButton>
+          >{flag}</IconButton>
           <Typography
             className={styles.title}
             variant='h6'
             color='inherit'
           >
-            App Title
+            {title}
           </Typography>
           <Switch onChange={themeCtx.toggleDarkMode}/>
           <div className={styles.grow} />
@@ -31,7 +52,7 @@ const Navbar = () => {
               <Search />
             </div>
             <InputBase 
-              placeholder='Search...' 
+              placeholder={`${search}...`} 
               classes={{
                 root: styles.inputRoot,
                 input: styles.inputInput
