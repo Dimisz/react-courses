@@ -11,7 +11,7 @@ const Navbar = () => {
 
   return(
     <div className={styles.root}>
-      <AppBar position='static' color='primary'>
+      <AppBar position='static' color={themeCtx.isDarkMode ?'primary' : 'default'}>
         <Toolbar>
           <IconButton 
             className={styles['menu-btn']}
