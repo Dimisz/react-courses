@@ -1,12 +1,17 @@
 import Navbar from "./components/Navbar/Navbar";
 import Form from "./components/Form/Form";
+import PageContent from "./components/PageContent/PageContent";
+
+import { ThemeProvider } from "./contexts/ThemeContext";
 
 const App = () => {
   return(
-    <>
-      <Navbar />
-      <Form />
-    </>
+    <ThemeProvider>
+      <PageContent>
+        <Navbar />
+        <Form />
+      </PageContent>
+    </ThemeProvider>
   )
 }
 

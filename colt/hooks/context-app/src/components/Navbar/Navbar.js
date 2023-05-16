@@ -2,9 +2,13 @@ import { AppBar, Toolbar, IconButton, Typography, InputBase, Switch } from "@mui
 import { Search } from "@mui/icons-material";
 
 import styles from './Navbar.module.css';
-import { style } from "@mui/system";
+
+import { useContext } from "react";
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 const Navbar = () => {
+  const themeCtx = useContext(ThemeContext);
+
   return(
     <div className={styles.root}>
       <AppBar position='static' color='primary'>
@@ -20,7 +24,7 @@ const Navbar = () => {
           >
             App Title
           </Typography>
-          <Switch />
+          <Switch onChange={themeCtx.toggleDarkMode}/>
           <div className={styles.grow} />
           <div className={styles.search}>
             <div className={styles['search-icon']}>
