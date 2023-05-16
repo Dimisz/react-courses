@@ -1,0 +1,33 @@
+.main {
+  width: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.paper {
+  padding: 1rem 2rem 2rem;
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar {
+  margin: 1rem;
+}
+
+.form {
+  width: 100%;
+  margin-top: 3rem;
+}
+
+.submit {
+  margin-top: 3rem;
+}
+
+@media (min-width: 500px){
+  .main {
+    width: 400px;
+    margin: 0 auto;
+  }
+}

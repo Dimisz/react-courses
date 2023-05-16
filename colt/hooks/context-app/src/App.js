@@ -1,6 +1,12 @@
+import Navbar from "./components/Navbar/Navbar";
+import Form from "./components/Form/Form";
+
 const App = () => {
   return(
-    <h1>Context App</h1>
+    <>
+      <Navbar />
+      <Form />
+    </>
   )
 }
 
