@@ -1,32 +1,60 @@
-import { useState } from "react";
+import { useState, useReducer } from "react";
 import styles from './Counter.module.css';
 
+const INCREMENT = 'increment';
+const DECREMENT = 'decrement';
+const ADD_ALOT = 'add_alot';
+const CHANGE_INPUT_VAL = 'change_value';
+
+const reducer = (state, action) => {
+  switch(action.type){
+    case INCREMENT:
+      return {
+        ...state,
+        count: state.count + 1
+      }
+    case DECREMENT:
+      return {
+        ...state,
+        count: state.count - 1
+      }
+    case ADD_ALOT:
+      return {
+        ...state,
+        count: state.count + (Number(state.enteredValue) || 0)
+      }
+    case CHANGE_INPUT_VAL:
+      return {
+        ...state,
+        enteredValue: action.payload
+      }
+      
+  }
+}
+
 const Counter = () => {
-  const [count, setCount] = useState(0);
-  const [enteredValue, setEnteredValue] = useState('');
+  const [state, dispatch] = useReducer(reducer, {
+    count: 0,
+    enteredValue: ''
+  });
 
   const increment = () => {
-    setCount((prev) => {
-      return prev + 1;
-    });
+    dispatch({type: INCREMENT});
   }
 
   const decrement = () => {
-    setCount((prev) => {
-      return prev - 1;
-    });
+    dispatch({type: DECREMENT});
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setCount((prev) => {
-      return prev + (Number(enteredValue) || 0);
-    })
+    dispatch({type: ADD_ALOT});
+    dispatch({type: CHANGE_INPUT_VAL, payload: ''});
   }
 
   return(
     <div className={styles.container}>
-      <h1>Current count: {count}</h1>
+      <h1>Current count: {state.count}</h1>
       <div className={styles.btns}>
         <button onClick={increment}> + </button>
         <button onClick={decrement}> - </button>
@@ -37,8 +65,8 @@ const Counter = () => {
           type='number' 
           id='add-alot' 
           name='add-alot' 
-          value={enteredValue}
-          onChange={(e) => setEnteredValue(e.target.value)}
+          value={state.enteredValue}
+          onChange={(e) => dispatch({type: CHANGE_INPUT_VAL, payload: e.target.value})}
         />
         <button type='submit'>Add It!</button>
       </form>
