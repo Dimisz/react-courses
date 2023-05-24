@@ -1,4 +1,4 @@
-import { useState, useReducer } from "react";
+import { useReducer } from "react";
 import styles from './Counter.module.css';
 
 const INCREMENT = 'increment';
@@ -21,14 +21,14 @@ const reducer = (state, action) => {
     case ADD_ALOT:
       return {
         ...state,
-        count: state.count + (Number(state.enteredValue) || 0)
+        count: state.count + (Number(state.enteredValue) || 0),
+        enteredValue: ''
       }
     case CHANGE_INPUT_VAL:
       return {
         ...state,
         enteredValue: action.payload
       }
-      
   }
 }
 
@@ -49,7 +49,6 @@ const Counter = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch({type: ADD_ALOT});
-    dispatch({type: CHANGE_INPUT_VAL, payload: ''});
   }
 
   return(
