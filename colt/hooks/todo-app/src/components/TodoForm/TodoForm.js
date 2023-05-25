@@ -4,12 +4,12 @@ import {
   TextField
  } from "@mui/material";
 import useInputState from "../../hooks/useInputState";
-import { TodoContext } from "../../context/TodoContext";
+import { DispatchContext } from "../../context/TodoContext";
 
 const TodoForm = () => {
   const [value, handleChange, reset] = useInputState('');
   // const { addTodo } = useContext(TodoContext);
-  const { dispatch } = useContext(TodoContext);
+  const dispatch = useContext(DispatchContext);
   
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -1,7 +1,7 @@
 import useToggle from "../../hooks/useToggle";
 import EditTodoForm from "../EditTodoForm/EditTodoForm";
-import { useContext } from "react";
-import { TodoContext } from "../../context/TodoContext";
+import { useContext, memo } from "react";
+import { DispatchContext } from "../../context/TodoContext";
 
 import { 
   ListItem, 
@@ -17,9 +17,10 @@ import {
 
 const TodoItem = ({todo}) => {
   // const {removeTodo, editTodo, toggleCompletedStatus} = useContext(TodoContext);
-  const { dispatch } = useContext(TodoContext);
+  const dispatch = useContext(DispatchContext);
 
   const [isEditing, toggleIsEditing] = useToggle(false);
+  console.log(`${todo.task} rendered`);
   return(
     <ListItem style={{height: '5rem'}}>
       {
@@ -64,4 +65,4 @@ const TodoItem = ({todo}) => {
   );
 }
 
-export default TodoItem;
+export default memo(TodoItem);

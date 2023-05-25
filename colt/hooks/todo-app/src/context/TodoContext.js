@@ -3,6 +3,7 @@ import useLocalStorageState from "../hooks/useLocalStorageState";
 import todoReducer from "../reducers/TodoReducer";
 
 export const TodoContext = createContext();
+export const DispatchContext = createContext();
 export const TodoContextProvider = ({children}) => {
   const [todos, dispatch] = useReducer(todoReducer, []);
   // const [todos, setTodos] = useLocalStorageState("todos", []);
@@ -54,12 +55,11 @@ export const TodoContextProvider = ({children}) => {
       //   editTodo,
       //   toggleCompletedStatus
       // }}
-      value={{
-        todos,
-        dispatch
-      }}
+      value={todos}
     >
-      {children}
+      <DispatchContext.Provider value={dispatch}>
+        {children}
+      </DispatchContext.Provider>
     </TodoContext.Provider>
   )
 }

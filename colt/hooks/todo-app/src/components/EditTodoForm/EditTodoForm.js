@@ -4,11 +4,11 @@ import {
  } from "@mui/material";
 import useInputState from "../../hooks/useInputState";
 import { useContext } from "react";
-import { TodoContext } from "../../context/TodoContext";
+import { DispatchContext } from "../../context/TodoContext";
 
 const EditTodoForm = ({onEdit, todo, toggleIsEditing}) => {
   const [value, handleChange, reset] = useInputState(todo.task);
-  const {dispatch} = useContext(TodoContext);
+  const dispatch = useContext(DispatchContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
