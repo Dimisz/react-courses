@@ -1,11 +1,13 @@
 import { createContext, useReducer } from "react";
 import useLocalStorageState from "../hooks/useLocalStorageState";
 import todoReducer from "../reducers/TodoReducer";
+import useLocalStorageReducer from "../hooks/useLocalStorageReducer";
 
 export const TodoContext = createContext();
 export const DispatchContext = createContext();
 export const TodoContextProvider = ({children}) => {
-  const [todos, dispatch] = useReducer(todoReducer, []);
+  
+  const [todos, dispatch] = useLocalStorageReducer('todos', [], todoReducer);
   // const [todos, setTodos] = useLocalStorageState("todos", []);
   // const addTodo = (todoText) => {
   //   const newTodo = {
