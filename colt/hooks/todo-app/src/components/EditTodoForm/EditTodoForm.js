@@ -3,15 +3,19 @@ import {
   TextField
  } from "@mui/material";
 import useInputState from "../../hooks/useInputState";
+import { useContext } from "react";
+import { TodoContext } from "../../context/TodoContext";
 
 const EditTodoForm = ({onEdit, todo, toggleIsEditing}) => {
   const [value, handleChange, reset] = useInputState(todo.task);
+  const {dispatch} = useContext(TodoContext);
 
   const handleSubmit = (e) => {
-  e.preventDefault();
-  onEdit(todo, value);
-  reset();
-  toggleIsEditing();
+    e.preventDefault();
+    dispatch({type: 'edit_todo', payload: {todo: todo, newTask: value}});
+    // onEdit(todo, value);
+    reset();
+    toggleIsEditing();
 }
 
   return(
