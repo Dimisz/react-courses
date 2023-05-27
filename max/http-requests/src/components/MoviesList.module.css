@@ -1,0 +1,24 @@
+.list {
+ list-style: none;
+ display: flex;
+ justify-content: space-around;
+ /* background-color: rebeccapurple; */
+ flex-wrap: wrap;
+}
+
+.card {
+  width: 30%;
+  height: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: center;
+  text-align: justify;
+  margin: 1rem;
+  padding: 1rem;
+  box-shadow: 10px 5px 5px black;
+}
+
+.release-date {
+  font-style: italic;
+} 
