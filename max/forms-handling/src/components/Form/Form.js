@@ -1,14 +1,18 @@
 import styles from './Form.module.css';
 import { useState, useEffect } from 'react';
+import useInput from '../../hooks/useInput';
 
 const Form = () => {
-  const [enteredName, setEnteredName] = useState('');
-  const [enteredEmail, setEnteredEmail] = useState('');
+  const [
+    enteredName, nameInputValid, 
+    nameInputTouched, onChangeName, 
+    nameFocusHandler, checkName, resetName] = useInput();
 
-  const [nameInputValid, setNameInputValid] = useState(false);
-  const [nameInputTouched, setNameInputTouched] = useState(false);
-  const [emailInputValid, setEmailInputValid] = useState(false);
-  const [emailInputTouched, setEmailInputTouched] = useState(false);
+  const [
+    enteredEmail, emailInputValid, 
+    emailInputTouched, onChangeEmail, 
+    emailFocusHandler, checkEmail, resetEmail] = useInput('email');
+  
 
   const [formValid, setFormValid] = useState(true);
 
@@ -16,71 +20,26 @@ const Form = () => {
     console.log('useEffect checking validity');
     checkFormIsValid();
   }, [enteredEmail, enteredName]);
-
-  const onChangeName = (e) => {
-    setEnteredName(e.target.value);
-  }
-
-  const checkName = (e) => {
-    if(e.target.value.trim() !== ''){
-      setNameInputValid(true);
-    }
-    else {
-      setNameInputValid(false);
-    }
-  }
-  
-  const onChangeEmail = (e) => {
-    setEnteredEmail(e.target.value);
-  }
-
-  const checkEmail = () => {
-    if(enteredEmail.trim().includes('@')){
-      setEmailInputValid(true);
-    }
-    else {
-      setEmailInputValid(false);
-    }
-  }
-
-  const nameFocusHandler = () => {
-    setNameInputTouched(true);
-    setNameInputValid(true);
-  }
-
-  const emailFocusHandler = () => {
-    setEmailInputTouched(true);
-    setEmailInputValid(true);
-  }
   
 
   const checkFormIsValid = () => {
-    if(enteredName.trim() === ''){
-      setFormValid(false);
-    }
-    else {
-      setFormValid(true);
-    }
+    console.log(`nameinput: ${nameInputValid}`);
+    console.log(`emailinput: ${emailInputValid}`);
+    setFormValid(nameInputValid && emailInputValid);
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(nameInputValid && emailInputValid){
+    if(formValid){
       console.log('form submitted');
-      setEnteredName('');
-      setNameInputValid(false);
-      setNameInputTouched(false);
-
-      setEnteredEmail('');
-      setEmailInputValid(false);
-      setEmailInputTouched(false);
-
+      resetName();
+      resetEmail();
       setFormValid(false);
     }
-    else {
-      nameInputTouched(true);
-      setEmailInputTouched(true);
-    }
+    // else {
+    //   nameInputTouched(true);
+    //   setEmailInputTouched(true);
+    // }
   }
 
 
