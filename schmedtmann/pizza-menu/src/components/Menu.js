@@ -7,14 +7,19 @@ const Menu = () => {
       <Pizza key={pizza.name} pizza={pizza}/>
     );
   });
+  // const renderedPizzas = [];
   return(
     <main className="menu">
       <h2>
         Our Menu
       </h2>
-      <ul className="pizzas">
-        {renderedPizzas}
-      </ul>
+      <p>Authentic Italian cuisine. 6 creative dishes to choose from. All from out stone oven, all organic, all delicious.</p>
+      {
+      renderedPizzas.length > 0 &&
+        <ul className="pizzas">
+          {renderedPizzas}
+        </ul>
+      }
     </main>
   )
 }

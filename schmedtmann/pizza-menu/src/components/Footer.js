@@ -7,7 +7,20 @@ const Footer = () => {
 
   return(
     <footer className="footer">
-       We are currently {open ? 'open' : 'closed'}
+       {
+        open
+        ?
+        <div className="order">
+          <p>We're open until {closingHour}. Come visit us or order online.</p>
+          <button className="btn">
+            Order
+          </button>
+        </div>
+        :
+        <p>
+          We are happy to serve you between {openingHour} and {closingHour}!
+        </p>
+       }
     </footer>
   );
 }

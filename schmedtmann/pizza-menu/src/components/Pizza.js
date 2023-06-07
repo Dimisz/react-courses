@@ -1,12 +1,12 @@
 const Pizza = ({pizza}) => {
   //title, imageUrl, description, price
   return(
-    <li className="pizza">
+    <li className={`pizza ${pizza.soldOut ? 'sold-out' : ''}`}>
       <img src={`images/${pizza.photoName}`} alt={pizza.name} />
       <div>
         <h3>{pizza.name}</h3>
         <p>{pizza.ingredients}</p>
-        <span>{pizza.price}</span>
+        <span>{pizza.soldOut ? 'Sold out' : `$${pizza.price}`}</span>
       </div>
     </li>
   );
