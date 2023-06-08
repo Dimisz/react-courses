@@ -20,7 +20,7 @@ const App = () => {
     <div className="app">
       <Logo />
       <Form setItems={setItems} />
-      <PackingList items={items}/>
+      <PackingList items={items} setItems={setItems} />
       <Stats />
     </div>
   );

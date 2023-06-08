@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const Form = ({setItems}) => {
-  const [qty, setQty] = useState(0);
+  const [qty, setQty] = useState(1);
   const [text, setText] = useState("");
 
   const handleSubmit = (e) => {
@@ -10,14 +10,14 @@ const Form = ({setItems}) => {
     setItems((pr) => {
       return [...pr, newItem];
     });
-    setQty(0);
+    setQty(1);
     setText("");
   }
 
   return(
     <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your trip?</h3>
-      <select onChange={(e) => setQty(e.target.value)}>
+      <select onChange={(e) => setQty(e.target.value)} value={qty}>
       {Array.from({length: 20}, (_, i) => i + 1).map((opt) => (
         <option key={opt} value={opt}>
           {opt}
