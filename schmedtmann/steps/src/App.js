@@ -8,6 +8,7 @@ const messages = [
 
 const App = () => {
   const [count, setCount] = useState(0);
+  const [isOpen, setIsOpen] = useState(true);
 
   const nextStepHandler = () => {
     if(count < 2){
@@ -22,7 +23,13 @@ const App = () => {
   }
 
   return(
-    <div className="steps">
+    <>
+    <button 
+      className="close"
+      onClick={() => setIsOpen(!isOpen)}
+    >&times;</button>
+    { isOpen &&
+      <div className="steps">
       <div className="numbers">
         <div 
           className={`${count === 0 ? 'active' : ''}`}
@@ -34,7 +41,7 @@ const App = () => {
           className={`${count === 2 ? 'active' : ''}`}
         >3</div>
       </div>
-      <p className="message">{messages[count]}</p>
+      <p className="message">Step {count + 1}: {messages[count]}</p>
       <div className="buttons">
         <button 
           onClick={previousStepHandler}
@@ -44,7 +51,8 @@ const App = () => {
           onClick={nextStepHandler}
           className="active">Next</button>
       </div>
-    </div>
+    </div>}
+    </>
   );
 }
 
