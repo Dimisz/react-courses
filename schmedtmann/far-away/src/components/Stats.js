@@ -12,11 +12,19 @@ const Stats = ({items}) => {
       return qty + 0;
     }
   }, 0);
+  const percentage = Math.round((numPackedItems/numItems)*100);
   // console.log(numPackedItems);
 
   return(
     <footer className="stats">
-      <em>🦧You have {numItems} items on your list, and you already packed {numPackedItems} ({Math.round((numPackedItems/numItems)*100)}%).</em>
+      {
+      percentage === 100
+      ?
+      <em>You got everything ready to go!</em>
+      :
+      <em>🦧You have {numItems} items on your list, and you already packed {numPackedItems} ({percentage}%).</em>
+      }
+      
     </footer>
   );
 }
