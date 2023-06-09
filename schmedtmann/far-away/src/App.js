@@ -16,12 +16,24 @@ const initialItems = [
 const App = () => {
   const [items, setItems] = useState(initialItems);
 
+  const setPacked = (itemId) => {
+    const changedItems = items.map((i) => {
+      if(i.id === itemId){
+        return {...i, packed: !i.packed}
+      }
+      else{
+        return i;
+      }
+    });
+    setItems(changedItems);
+  }
+
   return(
     <div className="app">
       <Logo />
       <Form setItems={setItems} />
-      <PackingList items={items} setItems={setItems} />
-      <Stats />
+      <PackingList items={items} setItems={setItems} setPacked={setPacked}/>
+      <Stats items={items} />
     </div>
   );
 }

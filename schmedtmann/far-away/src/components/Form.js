@@ -6,6 +6,10 @@ const Form = ({setItems}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(text.trim() === ""){
+      return;
+    }
+
     const newItem = { id: Math.random().toString(), description: text, quantity: qty, packed: false };
     setItems((pr) => {
       return [...pr, newItem];
@@ -14,10 +18,18 @@ const Form = ({setItems}) => {
     setText("");
   }
 
+  const handleSelect = (e) => {
+    setQty(Number(e.target.value));
+  }
+
+  const handleInputText = (e) => {
+    setText(e.target.value);
+  }
+
   return(
     <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your trip?</h3>
-      <select onChange={(e) => setQty(e.target.value)} value={qty}>
+      <select onChange={handleSelect} value={qty}>
       {Array.from({length: 20}, (_, i) => i + 1).map((opt) => (
         <option key={opt} value={opt}>
           {opt}
@@ -26,7 +38,7 @@ const Form = ({setItems}) => {
       </select>
       <input 
         value={text}
-        onChange={(e) => setText(e.target.value)}
+        onChange={handleInputText}
         type="text" 
         placeholder="Item..." 
       />

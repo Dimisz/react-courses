@@ -1,7 +1,7 @@
 import Item from "./Item";
 
 
-const PackingList = ({items, setItems}) => {
+const PackingList = ({items, setItems, setPacked}) => {
   const handleDelete = (itemId) => {
     const filteredItems = items.filter((item) => {
       return item.id !== itemId;
@@ -10,7 +10,7 @@ const PackingList = ({items, setItems}) => {
   }
 
   const renderedItems = items.map((i) => {
-    return(<Item key={i.id} item={i} handleDelete={handleDelete}/>);
+    return(<Item key={i.id} item={i} handleDelete={handleDelete} setPacked={setPacked}/>);
   });
 
   return(
