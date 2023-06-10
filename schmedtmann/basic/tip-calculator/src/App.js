@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import BillPrice from "./components/BiilPrice";
-import ServiceRating from "./components/ServiceRating";
+import RatingSelect from "./components/RatingSelect";
 import './App.css';
 
 const App = () => {
@@ -9,7 +9,7 @@ const App = () => {
   const [yourTip, setYourTip] = useState('0');
   const [friendsTip, setFriendsTip] = useState('0');
 
-  const tip = (((Number(yourTip) || 0) + (Number(friendsTip) || 0)) / 2);
+  const tip = ((((Number(yourTip) || 0) + (Number(friendsTip) || 0)) / 2) * Number(billPrice)) / 100;
   const total = (Number(billPrice) || 0) + tip;
 
   const reset = () => {
@@ -21,18 +21,23 @@ const App = () => {
   return(
     <div className="container">
       <BillPrice billPrice={billPrice} setBillPrice={setBillPrice} />
-      <ServiceRating 
-        labelText='How did you like the service?' 
+      <RatingSelect 
         tip={yourTip}
         setTip={setYourTip}
-      />
-      <ServiceRating 
-        labelText='How did your friend like the service?' 
+      >
+        How did you like the service?
+      </RatingSelect>
+      <RatingSelect 
         tip={friendsTip}
         setTip={setFriendsTip}
-      />
-      <h2>You pay ${total} (${billPrice} + ${tip})</h2>
-      <button onClick={reset}>Reset</button>
+      >
+        How did your friend like the service?
+      </RatingSelect>
+      {total > 0 && 
+      <>
+        <h2>You pay ${total} (${billPrice} + ${tip})</h2>
+        <button onClick={reset}>Reset</button>
+      </>}
     </div>
   );
 }

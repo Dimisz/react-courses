@@ -1,6 +1,4 @@
-import { useState } from 'react';
-
-const ServiceRating = ({labelText, tip, setTip}) => {
+const RatingSelect = ({children, tip, setTip}) => {
   // const [selectedLevel, setSelectedLevel] = useState('ok');
   const handleSelect = (e) => {
     // console.log(e.target.value);
@@ -24,7 +22,7 @@ const ServiceRating = ({labelText, tip, setTip}) => {
 
   return(
     <>
-      <label htmlFor='rating'>{labelText}</label>
+      <label htmlFor='rating'>{children}</label>
       <select 
         id='rating' 
         name='rating' 
@@ -37,4 +35,4 @@ const ServiceRating = ({labelText, tip, setTip}) => {
   )
 }
 
-export default ServiceRating;
+export default RatingSelect;
