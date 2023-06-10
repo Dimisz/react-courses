@@ -1,3 +1,9 @@
+import { useState } from "react";
+
+import FriendsList from "./components/FriendsList";
+import FormAddFriend from "./components/FormAddFriend";
+import Button from "./components/Button";
+
 const initialFriends = [
   {
     id: 118836,
@@ -20,8 +26,28 @@ const initialFriends = [
 ];
 
 const App = () => {
+  const [showForm, setShowForm] = useState(false);
+
   return(
-    <div>Eat'N'Split App</div>
+    <div className="app">
+      <div className="sidebar">
+        <FriendsList friends={initialFriends}/>
+        {
+          showForm &&
+          <>
+            <FormAddFriend />
+            <Button onClick={() => setShowForm(false)}>Close</Button>
+          </>
+        }
+        
+        {!showForm && 
+          <Button 
+            onClick={() => setShowForm(true)}>
+              Add Friend
+          </Button>
+        }
+      </div>
+    </div>
   );
 }
 
