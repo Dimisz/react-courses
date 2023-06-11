@@ -1,23 +1,14 @@
 import { useState } from "react";
-import WatchedList from "./WatchedList";
-import Summary from "./Summary";
+import ToggleButton from "../UI/ToggleButton";
 
-const WatchedBox = ({watched, average}) => {
-  const [isOpen2, setIsOpen2] = useState(true);
+const WatchedBox = ({children}) => {
+  const [isOpen, setIsOpen] = useState(true);
 
   return(
     <div className="box">
-          <button
-            className="btn-toggle"
-            onClick={() => setIsOpen2((open) => !open)}
-          >
-            {isOpen2 ? "–" : "+"}
-          </button>
-          {isOpen2 && (
-            <>
-              <Summary watched={watched} average={average}/>
-              <WatchedList watched={watched} />
-            </>
+          <ToggleButton isOpen={isOpen} setIsOpen={setIsOpen} />
+          {isOpen && (
+            children
           )}
         </div>
   );
