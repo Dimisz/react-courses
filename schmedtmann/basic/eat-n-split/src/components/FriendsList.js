@@ -1,8 +1,10 @@
 import Button from "./Button";
 
-const FriendsList = ({friends}) => {
+const FriendsList = ({friends, selectedFriend, handleSelectFriend}) => {
+  const selectedFriendID = selectedFriend ? selectedFriend.id : null;
   const renderedFriends = friends.map((friend) => {
-    return(<li key={friend.id}>
+    const selected = selectedFriendID === friend.id;
+    return(<li key={friend.id} className={selected ? 'selected' : ''}>
       <img src={friend.image} alt={friend.name} />
       <h3>{friend.name}</h3>
       { friend.balance < 0 &&
@@ -14,7 +16,8 @@ const FriendsList = ({friends}) => {
       {friend.balance > 0 &&
         <p className="green">{friend.name} owes you ${friend.balance}</p>
       }
-      <Button>Select</Button>
+      {!selected && <Button onClick={() => {handleSelectFriend(friend)}}>Select</Button>}
+      {selected && <Button onClick={() => {handleSelectFriend(null)}}>Close</Button>}
     </li>);
   })
   return(
