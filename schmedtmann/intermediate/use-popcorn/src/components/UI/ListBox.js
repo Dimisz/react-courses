@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ToggleButton from "../UI/ToggleButton";
+import ToggleButton from "./ToggleButton";
 
 const ListBox = ({children}) => {
   const [isOpen, setIsOpen] = useState(true);

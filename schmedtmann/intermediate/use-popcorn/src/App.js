@@ -5,8 +5,7 @@ import Search from "./components/Navbar/Search";
 import NumResults from "./components/Navbar/NumResults";
 //main section components
 import Main from "./components/Main";
-import ListBox from "./components/MoviesList/ListBox";
-import WatchedBox from "./components/WatchedMovies/WatchedBox";
+import ListBox from "./components/UI/ListBox";
 
 import MoviesList from "./components/MoviesList/MoviesList";
 
@@ -79,10 +78,10 @@ export default function App() {
         <ListBox>
           <MoviesList movies={movies} />
         </ListBox>
-        <WatchedBox>
+        <ListBox>
           <Summary watched={watched} average={average}/>
           <WatchedList watched={watched} />
-        </WatchedBox>
+        </ListBox>
       </Main>
     </>
   );
