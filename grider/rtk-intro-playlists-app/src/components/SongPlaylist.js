@@ -12,12 +12,10 @@ function SongPlaylist() {
 
   const handleSongAdd = (song) => {
     dispatch(addSong(song));
-    // To Do:
-    // Add song to list of songs
   };
+
   const handleSongRemove = (song) => {
-    // To Do:
-    // Remove song from list of songs
+    dispatch(removeSong(song));
   };
 
   const renderedSongs = songPlaylist.map((song) => {

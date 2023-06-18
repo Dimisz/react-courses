@@ -8,7 +8,13 @@ const songsSlice = createSlice({
       return [...state, action.payload];
     },
     removeSong(state, action){
-      // to do
+      const filteredSongs = state.filter((song) => {
+        return song !== action.payload;
+      });
+      return filteredSongs;
+    },
+    resetSongs(state, action){
+      return [];
     }
   }
 });
@@ -25,6 +31,9 @@ const moviesSlice = createSlice({
         return movie !== action.payload;
       });
       return filteredMovies;
+    },
+    resetMovies(state, action){
+      return [];
     }
   }
 })
@@ -37,4 +46,5 @@ const store = configureStore({
 });
 
 export { store };
-export const { addSong, removeSong } = songsSlice.actions;
+export const { addSong, removeSong, resetSongs } = songsSlice.actions;
+export const { addMovie, removeMovie, resetMovies } = moviesSlice.actions;
