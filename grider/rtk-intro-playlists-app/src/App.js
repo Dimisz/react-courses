@@ -11,6 +11,8 @@ export default function App() {
   const handleResetClick = () => {
     dispatch(clearMovies());
     dispatch(clearSongs());
+
+    
   };
 
   return (
