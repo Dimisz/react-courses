@@ -3,19 +3,19 @@ import { changeName, changeCost } from '../store';
 
 const CarForm = () => {
   const dispatch = useDispatch();
-  const name = useSelector((state) => {
-    return state.form.name;
+  const { name, cost } = useSelector((state) => {
+    return {
+      name: state.form.name,
+      cost: state.form.cost
+    };
   });
-  const cost = useSelector((state) => {
-    return state.form.cost;
-  })
 
   const handleNameChange = (event) => {
     dispatch(changeName(event.target.value));
   };
 
   const handleCostChange = (event) => {
-    dispatch(changeCost(Number(event.target.value) || 0));
+    dispatch(changeCost(parseInt(event.target.value) || 0));
   }
 
 
@@ -36,8 +36,9 @@ const CarForm = () => {
             <label className="label">Cost</label>
             <input 
               className="input is-expanded"
-              value={cost}
+              value={cost || ''}
               onChange={handleCostChange}
+              type='number'
             />
           </div>
         </div>
