@@ -3,7 +3,8 @@ const TextExpander = ({
   children, 
   collapsedNumWords=10, 
   expandButtonText='Show More', 
-  collapseButtonText='Show Less'
+  collapseButtonText='Show Less',
+  buttonColor='#1f09cd'
 }) => {
   const [expanded, setExpanded] = useState(false);
 
@@ -17,6 +18,15 @@ const TextExpander = ({
     return collapsedText;
   }
 
+  const buttonStyle = {
+    background: 'none',
+    border: 'none',
+    font: 'inherit',
+    cursor: 'pointer',
+    marginLeft: '6px',
+    color: buttonColor
+  };
+
   return(
     <div>
       {
@@ -24,12 +34,12 @@ const TextExpander = ({
         ?
         <>
           {children}
-          <a onClick={toggle} style={{color: 'blue'}}>{collapseButtonText}</a>
+          <button onClick={toggle} style={buttonStyle}>{collapseButtonText}</button>
         </>
         :
         <>
           {getCollapsedText(children, collapsedNumWords)}
-           <a onClick={toggle} style={{color: 'blue'}}>{expandButtonText}</a>
+           <button onClick={toggle} style={buttonStyle}>{expandButtonText}</button>
         </>
       }
     </div>
