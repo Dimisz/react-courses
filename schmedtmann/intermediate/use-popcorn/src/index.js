@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-// import './index.css';
-// import App from './App';
+import './index.css';
+import App from './App';
+
 import StarRating from './components/StarRating/StarRating';
 const rootElement = document.getElementById('root');
 const root = ReactDOM.createRoot(rootElement);
@@ -18,9 +19,10 @@ const thirdRatingSetter = (rating) => {
 }
 root.render(
   <>
-    <StarRating maxRating={10} defaultRating={6} onSet={firstRatingSetter}/>
+  <App/>
+    {/* <StarRating maxRating={10} defaultRating={6} onSet={firstRatingSetter}/>
     <StarRating color="red" size={24} onSet={secondRatingSetter}/>
-    <StarRating maxRating={14} size={15} color="blue" onSet={thirdRatingSetter}/>
+    <StarRating maxRating={14} size={15} color="blue" onSet={thirdRatingSetter}/> */}
   </>
   );
 
