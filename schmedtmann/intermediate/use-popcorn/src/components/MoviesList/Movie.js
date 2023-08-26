@@ -1,6 +1,15 @@
-const Movie = ({movie}) => {
+const Movie = ({movie, setSelectedId, selectedId}) => {
+  const handleSelectId = (id) => {
+    if(id === selectedId){
+      setSelectedId(null);
+    }
+    else {
+      setSelectedId(id);
+    }
+  }
+
   return(
-    <li>
+    <li onClick={() => handleSelectId(movie.imdbID)}>
       <img src={movie.Poster} alt={`${movie.Title} poster`} />
       <h3>{movie.Title}</h3>
       <div>

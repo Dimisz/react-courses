@@ -15,33 +15,10 @@ import ErrorMessage from "./components/UI/ErrorMessage";
 
 import Summary from "./components/WatchedMovies/Summary";
 import WatchedList from "./components/WatchedMovies/WatchedList";
+import SelectedMovie from "./components/SelectedMovie/SelectedMovie";
 
 import { API_KEY } from "./API_KEY";
 
-
-const tempMovieData = [
-  {
-    imdbID: "tt1375666",
-    Title: "Inception",
-    Year: "2010",
-    Poster:
-      "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
-  },
-  {
-    imdbID: "tt0133093",
-    Title: "The Matrix",
-    Year: "1999",
-    Poster:
-      "https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg",
-  },
-  {
-    imdbID: "tt6751668",
-    Title: "Parasite",
-    Year: "2019",
-    Poster:
-      "https://m.media-amazon.com/images/M/MV5BYWZjMjk3ZTItODQ2ZC00NTY5LWE0ZDYtZTI3MjcwN2Q5NTVkXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_SX300.jpg",
-  },
-];
 
 const tempWatchedData = [
   {
@@ -70,24 +47,33 @@ const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
 export default function App() {
-  // const [query, setQuery] = useState("");
+  const [query, setQuery] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const [movies, setMovies] = useState(tempMovieData);
+  const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState(tempWatchedData);
   
+  const [selectedId, setSelectedId] = useState(null);
+
   useEffect(() => {
     const fetchMovies = async() => {
       try{
         setIsLoading(true);
         setHasError(false);
-        const res = await fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=interstellar`);
+        const res = await fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${query}`);
         if(!res.ok){
+          setErrorMessage("Unable to fetch data");
           throw new Error("Something went wrong with fetching movies");
         }
 
+        
         const data = await res.json();
+        if(data.Response === 'False'){
+          setErrorMessage("Movie not found");
+          throw new Error("Movie not found");
+        }
         setMovies(data.Search);
       }
       catch(err){
@@ -98,14 +84,21 @@ export default function App() {
         setIsLoading(false);
       }
     }
+
+    if(query.length < 3){
+      setMovies([]);
+      setHasError(false);
+      return;
+    }
+
     fetchMovies();
-  }, []);
+  }, [query]);
   
 
   return (
     <>
       <Navbar>
-        <Search />
+        <Search query={query} setQuery={setQuery}/>
         <NumResults movies={movies}/>
       </Navbar>
       <Main>
@@ -114,17 +107,26 @@ export default function App() {
             isLoading && !hasError && <Loader />
           }
           {
-            !isLoading && !hasError && <MoviesList movies={movies} />
+            !isLoading && !hasError && <MoviesList movies={movies} selectedId={selectedId} setSelectedId={setSelectedId}/>
           }
           {
-            hasError && <ErrorMessage message="Unable to fetch data" />
+            hasError && <ErrorMessage message={errorMessage} />
           }
 
 
         </ListBox>
         <ListBox>
-          <Summary watched={watched} average={average}/>
-          <WatchedList watched={watched} />
+          {
+            selectedId 
+            ?
+            <SelectedMovie setSelectedId={setSelectedId} selectedId={selectedId}/>
+            :
+            <>
+              <Summary watched={watched} average={average}/>
+              <WatchedList watched={watched} />
+            </>
+          }
+          
         </ListBox>
       </Main>
     </>
