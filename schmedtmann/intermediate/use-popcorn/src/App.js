@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 //navbar components
 import Navbar from "./components/Navbar/Navbar";
@@ -9,6 +9,9 @@ import Main from "./components/Main";
 import ListBox from "./components/UI/ListBox";
 
 import MoviesList from "./components/MoviesList/MoviesList";
+// UI Notifications
+import Loader from "./components/UI/Loader";
+import ErrorMessage from "./components/UI/ErrorMessage";
 
 import Summary from "./components/WatchedMovies/Summary";
 import WatchedList from "./components/WatchedMovies/WatchedList";
@@ -68,12 +71,36 @@ const average = (arr) =>
 
 export default function App() {
   // const [query, setQuery] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasError, setHasError] = useState(false);
+
   const [movies, setMovies] = useState(tempMovieData);
   const [watched, setWatched] = useState(tempWatchedData);
   
-  fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=interstellar`)
-    .then(res => res.json())
-    .then(data => console.log(data));
+  useEffect(() => {
+    const fetchMovies = async() => {
+      try{
+        setIsLoading(true);
+        setHasError(false);
+        const res = await fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=interstellar`);
+        if(!res.ok){
+          throw new Error("Something went wrong with fetching movies");
+        }
+
+        const data = await res.json();
+        setMovies(data.Search);
+      }
+      catch(err){
+        setHasError(true);
+        console.error(err.message);
+      }
+      finally {
+        setIsLoading(false);
+      }
+    }
+    fetchMovies();
+  }, []);
+  
 
   return (
     <>
@@ -83,7 +110,17 @@ export default function App() {
       </Navbar>
       <Main>
         <ListBox>
-          <MoviesList movies={movies} />
+          {
+            isLoading && !hasError && <Loader />
+          }
+          {
+            !isLoading && !hasError && <MoviesList movies={movies} />
+          }
+          {
+            hasError && <ErrorMessage message="Unable to fetch data" />
+          }
+
+
         </ListBox>
         <ListBox>
           <Summary watched={watched} average={average}/>
