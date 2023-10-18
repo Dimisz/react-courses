@@ -11,7 +11,11 @@ export default function App() {
 
   return (
     <>
-      <Navbar query={query} setQuery={setQuery} movies={movies}/>
+      <Navbar 
+        query={query} 
+        setQuery={setQuery} 
+        numResults={movies.length}
+      />
       <MainSection movies={movies} watchedMovies={watched} />
     </>
   );

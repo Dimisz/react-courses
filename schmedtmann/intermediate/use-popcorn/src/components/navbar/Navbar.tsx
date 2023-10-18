@@ -1,28 +1,19 @@
-import { Movie } from "../../models/movie";
+import Logo from "./Logo";
+import NumResults from "./NumResults";
+import SearchBar from "./SearchBar";
 
 interface Props {
   query: string;
   setQuery: React.Dispatch<React.SetStateAction<string>>;
-  movies: Movie[];
+  numResults: number;
 }
 
-const Navbar = ({ query, setQuery, movies } : Props) => {
+const Navbar = ({ query, setQuery, numResults } : Props) => {
   return(
     <nav className="nav-bar">
-        <div className="logo">
-          <span role="img">🍿</span>
-          <h1>usePopcorn</h1>
-        </div>
-        <input
-          className="search"
-          type="text"
-          placeholder="Search movies..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-        <p className="num-results">
-          Found <strong>{movies.length}</strong> results
-        </p>
+        <Logo/>
+        <SearchBar query={query} setQuery={setQuery} />
+        <NumResults numResults={numResults} />
       </nav>
   )
 }
