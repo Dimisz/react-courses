@@ -3,6 +3,9 @@ import Star from "./Star";
 
 interface Props {
   maxRating?: number;
+  color?: string;
+  size?: number;
+  className?: string;
 }
 
 const containerStyle = {
@@ -15,16 +18,19 @@ const starContainerStyle = {
   display: 'flex',
 };
 
-const textStyle = {
-  lineHeight: '1',
-  margin: '0'
-};
 
-const StarRating = ({ maxRating = 4 }: Props) => {
+const StarRating = ({ maxRating = 4, color = '#fcc419', size = 36, className = '' }: Props) => {
   const [rating, setRating] = useState(3);
   const [tempRating, setTempRating] = useState(0);
+
+  const textStyle = {
+    lineHeight: '1',
+    margin: '0',
+    color: color,
+    fontSize: `${size}px`
+  };
   return(
-    <div style={containerStyle}>
+    <div style={containerStyle} className={className}>
       <div style={starContainerStyle}>
         {Array.from({length: maxRating}, (_, i) => {
             return(
@@ -34,6 +40,8 @@ const StarRating = ({ maxRating = 4 }: Props) => {
                 isFilled={ tempRating ? tempRating >= (i + 1) : (i + 1) <= rating }
                 onHoverIn={ () => setTempRating(i+1)}
                 onHoverOut={() => setTempRating(0)}
+                color={color}
+                size={size}
               />
             )}
           )
