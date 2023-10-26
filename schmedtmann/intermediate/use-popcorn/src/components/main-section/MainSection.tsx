@@ -1,19 +1,13 @@
-import { WatchedMovie } from "../../models/watchedMovie";
-import { Movie } from "../../models/movie";
-
-import FoundMoviesBox from "./found-movies/FoundMoviesBox";
-import WatchedMoviesBox from "./watched-movies/WatchedMoviesBox";
+import { ReactNode } from "react";
 
 interface Props {
-  movies: Movie[];
-  watchedMovies: WatchedMovie[];
+  children: ReactNode;
 }
 
-const MainSection = ({ movies, watchedMovies }: Props) => {
+const MainSection = ({ children }: Props) => {
   return(
     <main className="main">
-        <FoundMoviesBox movies={movies}/>
-        <WatchedMoviesBox watchedMovies={watchedMovies}/>
+        {children}
       </main>
   );
 }
