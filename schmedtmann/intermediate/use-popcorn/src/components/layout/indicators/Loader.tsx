@@ -1,5 +1,9 @@
-const Loader = () => {
-  return <p className="loader">Loading movies...</p>;
+interface Props {
+  message: string;
+}
+
+const Loader = ({message}: Props) => {
+  return <p className="loader">{message}</p>;
 }
 
 export default Loader;

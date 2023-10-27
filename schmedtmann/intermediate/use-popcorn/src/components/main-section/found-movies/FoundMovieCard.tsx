@@ -2,11 +2,12 @@ import { Movie } from "../../../models/movie";
 
 interface Props {
   movie: Movie;
+  handleSelectId: (imdbId: string) => void;
 }
 
-const FoundMovieCard = ({ movie }: Props) => {
+const FoundMovieCard = ({ movie, handleSelectId }: Props) => {
   return(
-    <li>
+    <li onClick={() => handleSelectId(movie.imdbID)}>
       <img src={movie.Poster} alt={`${movie.Title} poster`} />
       <h3>{movie.Title}</h3>
       <div>
