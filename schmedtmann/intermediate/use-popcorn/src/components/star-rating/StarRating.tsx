@@ -6,6 +6,7 @@ interface Props {
   color?: string;
   size?: number;
   className?: string;
+  currentRating?: number;
 }
 
 const containerStyle = {
@@ -19,8 +20,8 @@ const starContainerStyle = {
 };
 
 
-const StarRating = ({ maxRating = 4, color = '#fcc419', size = 36, className = '' }: Props) => {
-  const [rating, setRating] = useState(3);
+const StarRating = ({ maxRating = 4, color = '#fcc419', size = 36, className = '', currentRating = 0 }: Props) => {
+  const [rating, setRating] = useState(currentRating);
   const [tempRating, setTempRating] = useState(0);
 
   const textStyle = {

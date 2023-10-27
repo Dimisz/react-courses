@@ -8,7 +8,7 @@ interface Props {
 
 const FoundMoviesList = ({ movies, handleSelectId }: Props) => {
   return(
-    <ul className="list">
+    <ul className="list list-movies">
       {movies?.map((movie) => (
         <FoundMovieCard key={movie.imdbID} movie={movie} handleSelectId={handleSelectId}/>
       ))}

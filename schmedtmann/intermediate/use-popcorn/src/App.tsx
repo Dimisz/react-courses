@@ -8,8 +8,7 @@ import WatchedMoviesList from "./components/main-section/watched-movies/WatchedM
 import FoundMoviesList from "./components/main-section/found-movies/FoundMoviesList";
 import Loader from "./components/layout/indicators/Loader";
 import ErrorMessage from "./components/layout/indicators/ErrorMessage";
-import { SelectedMovie } from "./models/selectedMovie";
-import SelectedMovieCard from "./components/selected-movie/SelectedMovieCard";
+import SelectedMovieDetails from "./components/selected-movie/SelectedMovieDetails";
 
 
 export default function App() {
@@ -19,55 +18,11 @@ export default function App() {
   const [moviesLoading, setMoviesLoading] = useState(false);
   const [error, setError] = useState("");
   
-  const [selectedId, setSelectedId] = useState<string>('');
-  const [selectedMovie, setSelectedMovie] = useState<SelectedMovie | null>(null);
-  const [selectedMovieLoading, setSelectedMovieLoading] = useState(false);
-  const [selectedMovieError, setSelectedMovieError] = useState("");
+  const [selectedId, setSelectedId] = useState<string | null>(null);
 
-  const handleSelectId = (imdbId: string) => {
+  const handleSelectId = (imdbId: string | null) => {
     setSelectedId(imdbId);
   }
-
-  const handleResetSelectedMovie = () => {
-    setSelectedId('');
-    setSelectedMovie(null);
-    setSelectedMovieLoading(false);
-    setSelectedMovieError('');
-  }
-
-  useEffect(() => {
-    const fetchSelectedMovie = async () => {
-      setSelectedMovieLoading(true);
-      try{
-        const res = await fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&i=${selectedId}&plot=full`);
-        if(!res.ok) throw new Error('Something went wrong fetching movies. Try again!');
-        const data = await res.json();
-        setSelectedMovie({
-          Title: data.Title,
-          Released: data.Released,
-          Runtime: data.Runtime,
-          Genre: data.Genre,
-          imdbRating: Number(data.imdbRating) || 0,
-          Plot: data.Plot,
-          Actors: data.Actors,
-          Director: data.Director,
-          Poster: data.Poster
-        } || null);
-        // console.log(data);
-        setSelectedMovieError("");
-      }
-      catch(error: any) {
-        // console.error(error.message);
-        setSelectedMovieError(error.message);
-      }
-      finally {
-        setSelectedMovieLoading(false);
-      }
-    }
-
-    if(selectedId === '') return;
-    fetchSelectedMovie();
-  }, [selectedId]);
 
 
   useEffect(() => {
@@ -122,20 +77,8 @@ export default function App() {
           {error && <ErrorMessage errorMessage={error}/>}
         </SectionBox>
         <SectionBox>
-          {selectedMovieLoading && !selectedMovieError && <Loader message={'Loading the selected movie...'}/>}
-          {selectedMovieError && 
-            <>
-              <button className="btn-back" onClick={handleResetSelectedMovie}>{'<-'}</button>
-              <ErrorMessage errorMessage={"Failed to fetch movie details("}/>
-            </>
-          }
-          {selectedMovie && !selectedMovieLoading && 
-            <>
-              <button className="btn-back" onClick={handleResetSelectedMovie}>{'<-'}</button>
-              <SelectedMovieCard movie={selectedMovie} />
-            </>
-          }
-          {!selectedMovie && !selectedMovieLoading && !selectedMovieError &&
+          { selectedId && <SelectedMovieDetails selectedId={selectedId} handleSelectId={handleSelectId} /> }
+          { !selectedId &&
             <>
               <WatchedMoviesSummary watchedMovies={watched}/>
               <WatchedMoviesList watchedMovies={watched}/>
