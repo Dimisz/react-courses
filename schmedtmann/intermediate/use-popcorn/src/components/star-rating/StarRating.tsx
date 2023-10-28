@@ -7,6 +7,7 @@ interface Props {
   size?: number;
   className?: string;
   currentRating?: number;
+  setUserRating: (rating: number) => void;
 }
 
 const containerStyle = {
@@ -20,9 +21,14 @@ const starContainerStyle = {
 };
 
 
-const StarRating = ({ maxRating = 4, color = '#fcc419', size = 36, className = '', currentRating = 0 }: Props) => {
+const StarRating = ({ maxRating = 4, color = '#fcc419', size = 36, className = '', currentRating = 0, setUserRating }: Props) => {
   const [rating, setRating] = useState(currentRating);
   const [tempRating, setTempRating] = useState(0);
+
+  const handleSetRating = (rating: number) => {
+    setRating(rating);
+    setUserRating(rating);
+  }
 
   const textStyle = {
     lineHeight: '1',
@@ -37,7 +43,7 @@ const StarRating = ({ maxRating = 4, color = '#fcc419', size = 36, className = '
             return(
               <Star 
                 key={i} 
-                handleClick={() => setRating(i+1)}
+                handleClick={() => handleSetRating(i+1)}
                 isFilled={ tempRating ? tempRating >= (i + 1) : (i + 1) <= rating }
                 onHoverIn={ () => setTempRating(i+1)}
                 onHoverOut={() => setTempRating(0)}

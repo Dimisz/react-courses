@@ -1,4 +1,5 @@
 export interface SelectedMovie {
+  imdbID?: string | null,
   Title: string;
   Released: string;
   Runtime: string;

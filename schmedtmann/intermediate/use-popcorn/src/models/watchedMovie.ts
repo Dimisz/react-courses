@@ -1,9 +1,9 @@
 export interface WatchedMovie {
-  imdbID: string;
+  imdbID?: string | null;
   Title: string;
   Year: string;
   Poster: string;
-  runtime: number;
+  runtime: string;
   imdbRating: number;
   userRating: number;
 }

@@ -4,13 +4,15 @@ import Loader from "../layout/indicators/Loader";
 import ErrorMessage from "../layout/indicators/ErrorMessage";
 import SelectedMovieCard from "./SelectedMovieCard";
 import { API_KEY } from "../../data/API_KEY";
+import { WatchedMovie } from "../../models/watchedMovie";
 
 interface Props {
   selectedId: string | null;
   handleSelectId: (id: string | null) => void;
+  addWatchedMovie: (watchedMovie: WatchedMovie) => void;
 }
 
-const SelectedMovieDetails = ({selectedId, handleSelectId}: Props) => {
+const SelectedMovieDetails = ({selectedId, handleSelectId, addWatchedMovie}: Props) => {
 
   const [selectedMovie, setSelectedMovie] = useState<SelectedMovie | null>(null);
   const [selectedMovieLoading, setSelectedMovieLoading] = useState(false);
@@ -23,6 +25,8 @@ const SelectedMovieDetails = ({selectedId, handleSelectId}: Props) => {
     setSelectedMovieError('');
   }
 
+
+
   useEffect(() => {
     const fetchSelectedMovie = async () => {
       setSelectedMovieLoading(true);
@@ -31,6 +35,7 @@ const SelectedMovieDetails = ({selectedId, handleSelectId}: Props) => {
         if(!res.ok) throw new Error('Something went wrong fetching movies. Try again!');
         const data = await res.json();
         setSelectedMovie({
+          imdbID: selectedId,
           Title: data.Title,
           Released: data.Released,
           Runtime: data.Runtime,
@@ -62,7 +67,13 @@ const SelectedMovieDetails = ({selectedId, handleSelectId}: Props) => {
         <button className="btn-back" onClick={handleResetSelectedMovie}>&larr;</button>
         { selectedMovieLoading && !selectedMovieError && <Loader message={'Loading the selected movie...'}/> }
         { selectedMovieError && <ErrorMessage errorMessage={"Failed to fetch movie details("}/> }
-        { selectedMovie && !selectedMovieLoading && !selectedMovieError && <SelectedMovieCard movie={selectedMovie} /> }
+        { selectedMovie && !selectedMovieLoading && !selectedMovieError && 
+          <SelectedMovieCard 
+            movie={selectedMovie} 
+            addWatchedMovie={addWatchedMovie} 
+            handleResetSelectedMovie={handleResetSelectedMovie}
+          /> 
+        }
       </>
   );
 }

@@ -9,11 +9,13 @@ import FoundMoviesList from "./components/main-section/found-movies/FoundMoviesL
 import Loader from "./components/layout/indicators/Loader";
 import ErrorMessage from "./components/layout/indicators/ErrorMessage";
 import SelectedMovieDetails from "./components/selected-movie/SelectedMovieDetails";
+import { WatchedMovie } from "./models/watchedMovie";
+import { Movie } from "./models/movie";
 
 
 export default function App() {
-  const [movies, setMovies] = useState([]);
-  const [watched, setWatched] = useState([]);
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const [watchedMovies, setWatchedMovies] = useState<WatchedMovie[]>([]);
   const [query, setQuery] = useState("interstellar");
   const [moviesLoading, setMoviesLoading] = useState(false);
   const [error, setError] = useState("");
@@ -22,6 +24,14 @@ export default function App() {
 
   const handleSelectId = (imdbId: string | null) => {
     setSelectedId(imdbId);
+  }
+
+  const handleAddWatchedMovie = (watchedMovie: WatchedMovie) => {
+    // check if movie already added
+    const updatedWatchedMovies = watchedMovies.filter((m) => {
+      return m.imdbID !== watchedMovie.imdbID;
+    })
+    setWatchedMovies([...updatedWatchedMovies, watchedMovie]);
   }
 
 
@@ -77,11 +87,17 @@ export default function App() {
           {error && <ErrorMessage errorMessage={error}/>}
         </SectionBox>
         <SectionBox>
-          { selectedId && <SelectedMovieDetails selectedId={selectedId} handleSelectId={handleSelectId} /> }
+          { selectedId && 
+            <SelectedMovieDetails 
+              addWatchedMovie={handleAddWatchedMovie}
+              selectedId={selectedId} 
+              handleSelectId={handleSelectId} 
+            /> 
+          }
           { !selectedId &&
             <>
-              <WatchedMoviesSummary watchedMovies={watched}/>
-              <WatchedMoviesList watchedMovies={watched}/>
+              <WatchedMoviesSummary watchedMovies={watchedMovies}/>
+              <WatchedMoviesList watchedMovies={watchedMovies}/>
             </>
           }
         </SectionBox>

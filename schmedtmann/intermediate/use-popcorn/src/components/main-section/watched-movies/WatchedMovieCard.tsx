@@ -20,7 +20,7 @@ const WatchedMovieCard = ({watchedMovie}:Props) => {
         </p>
         <p>
           <span>⏳</span>
-          <span>{watchedMovie.runtime} min</span>
+          <span>{watchedMovie.runtime}</span>
         </p>
       </div>
     </li>
