@@ -25,7 +25,24 @@ const SelectedMovieDetails = ({selectedId, handleSelectId, addWatchedMovie}: Pro
     setSelectedMovieError('');
   }
 
+  useEffect(() => {
+    const escapeKeyListener = (e: any) => {
+      if(e.code === 'Escape'){
+        handleResetSelectedMovie();
+      }
+    }
+    document.addEventListener('keydown', escapeKeyListener);
+    return () => {
+      document.removeEventListener('keydown', escapeKeyListener);
+    }
+  }, [handleResetSelectedMovie]);
 
+  useEffect(() => {
+      document.title = `Movie: ${selectedMovie?.Title || 'usePopcorn'}`;
+      return () => {
+        document.title = 'usePopcorn';
+      }
+    }, [selectedMovie]);
 
   useEffect(() => {
     const fetchSelectedMovie = async () => {

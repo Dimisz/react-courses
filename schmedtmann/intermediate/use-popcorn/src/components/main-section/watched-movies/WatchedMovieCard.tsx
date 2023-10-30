@@ -2,9 +2,10 @@ import { WatchedMovie } from "../../../models/watchedMovie";
 
 interface Props {
   watchedMovie: WatchedMovie;
+  handleDeleteWatchedMovie: (id: string | null) => void;
 }
 
-const WatchedMovieCard = ({watchedMovie}:Props) => {
+const WatchedMovieCard = ({watchedMovie, handleDeleteWatchedMovie}:Props) => {
   return(
     <li>
       <img src={watchedMovie.Poster} alt={`${watchedMovie.Title} poster`} />
@@ -22,6 +23,10 @@ const WatchedMovieCard = ({watchedMovie}:Props) => {
           <span>⏳</span>
           <span>{watchedMovie.runtime}</span>
         </p>
+        <button 
+          className="btn-delete" 
+          onClick={() => handleDeleteWatchedMovie(watchedMovie.imdbID || '')}
+        >x</button>
       </div>
     </li>
   );

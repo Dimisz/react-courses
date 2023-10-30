@@ -26,6 +26,11 @@ export default function App() {
     setSelectedId(imdbId);
   }
 
+  const handleDeleteWatchedMovie = (id: string | null) => {
+    const updatedWatchedMovies = watchedMovies.filter((movie) => movie.imdbID !== id);
+    setWatchedMovies(updatedWatchedMovies);
+  }
+
   const handleAddWatchedMovie = (watchedMovie: WatchedMovie) => {
     // check if movie already added
     const updatedWatchedMovies = watchedMovies.filter((m) => {
@@ -34,16 +39,17 @@ export default function App() {
     setWatchedMovies([...updatedWatchedMovies, watchedMovie]);
   }
 
-
   useEffect(() => {
     // fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${query.toLowerCase().trim()}`)
     //   .then((res) => res.json())
     //   .then((data) => setMovies(data.Search || []))
     //   .catch((error) => console.log(error));
+    const controller = new AbortController();
     const fetchMovies = async () => {
       setMoviesLoading(true);
       try{
-        const res = await fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${query.toLowerCase().trim()}`);
+        const res = await fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${query.toLowerCase().trim()}`, { signal: controller.signal });
+
         if(!res.ok) throw new Error('Something went wrong fetching movies. Try again!');
         const data = await res.json();
         setMovies(data.Search || []);
@@ -51,8 +57,7 @@ export default function App() {
         setError("");
       }
       catch(error: any) {
-        console.error(error.message);
-        setError(error.message);
+        if(error.name !== 'AbortError') setError(error.message);
       }
       finally {
         setMoviesLoading(false);
@@ -65,6 +70,9 @@ export default function App() {
     }
 
     fetchMovies();
+    return () => {
+      controller.abort();
+    }
   }, [query]);
 
   return (
@@ -97,7 +105,7 @@ export default function App() {
           { !selectedId &&
             <>
               <WatchedMoviesSummary watchedMovies={watchedMovies}/>
-              <WatchedMoviesList watchedMovies={watchedMovies}/>
+              <WatchedMoviesList watchedMovies={watchedMovies} handleDeleteWatchedMovie={handleDeleteWatchedMovie}/>
             </>
           }
         </SectionBox>
