@@ -1,20 +1,19 @@
 import { createRandomMovie } from "../data/data";
+import { useAppDispatch, useAppSelector } from "../store";
+import { moviesSlice } from "../store/moviesSlice";
 
-function MoviePlaylist() {
-  // To Do:
-  // Get list of movies
-  const moviePlaylist: string[] = [];
+const MoviePlaylist = () => {
+  const movies = useAppSelector((state) => state.movies);
+  const dispatch = useAppDispatch();
 
-  const handleMovieAdd = (movie) => {
-    // To Do:
-    // Add movie to list of movies
+  const handleMovieAdd = (movie: string) => {
+    dispatch(moviesSlice.actions.addMovie(movie));
   };
-  const handleMovieRemove = (movie) => {
-    // To Do:
-    // Remove movie from list of movies
+  const handleMovieRemove = (movie: string) => {
+    dispatch(moviesSlice.actions.removeMovie(movie));
   };
 
-  const renderedMovies = moviePlaylist.map((movie) => {
+  const renderedMovies = movies.map((movie) => {
     return (
       <li key={movie}>
         {movie}

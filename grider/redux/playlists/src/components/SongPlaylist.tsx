@@ -1,20 +1,20 @@
 import { createRandomSong } from '../data/data';
+import { useAppDispatch, useAppSelector } from '../store';
+import { songsSlice } from '../store/songsSlice';
 
 function SongPlaylist() {
-  // To Do:
-  // Get list of songs
-  const songPlaylist: string[] = [];
+  const songs = useAppSelector((state) => state.songs);
+  const dispatch = useAppDispatch();
 
-  const handleSongAdd = (song) => {
-    // To Do:
-    // Add song to list of songs
-  };
-  const handleSongRemove = (song) => {
-    // To Do:
-    // Remove song from list of songs
+  const handleSongAdd = (song: string) => {
+    dispatch(songsSlice.actions.addSong(song));
   };
 
-  const renderedSongs = songPlaylist.map((song) => {
+  const handleSongRemove = (song: string) => {
+    dispatch(songsSlice.actions.removeSong(song));
+  };
+
+  const renderedSongs = songs.map((song) => {
     return (
       <li key={song}>
         {song}
