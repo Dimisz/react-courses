@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { songsSlice } from "./songsSlice";
-import { moviesSlice } from "./moviesSlice";
+import { songsSlice } from "./slices/songsSlice";
+import { moviesSlice } from "./slices/moviesSlice";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 
@@ -16,4 +16,7 @@ export type AppDispatch = typeof store.dispatch;
 
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+
+export const { addSong, removeSong, clearSongs } = songsSlice.actions;
+export const { addMovie, removeMovie, clearMovies } = moviesSlice.actions;
 
