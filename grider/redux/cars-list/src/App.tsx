@@ -7,25 +7,20 @@ import { useAppSelector } from './store'
 
 function App() {
   const cars = useAppSelector(state => state.carsState.cars);
-  const searchResults = useAppSelector(state => state.carsState.searchResults);
+  const searchTerm = useAppSelector(state => state.searchState.searchTerm);
+  let filteredCars = cars;
+  if(searchTerm.length > 0){
+    filteredCars = cars.filter((car) => {
+      return car.name.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+  }
 
   return (
     <>
       <CarForm />
       <CarSearch />
-      {
-        searchResults.length > 0
-        ?
-        <>
-          <CarList cars={searchResults}/>
-          <CarValue cars={searchResults}/>
-        </>
-        :
-        <>
-          <CarList cars={cars}/>
-          <CarValue cars={cars}/>
-        </>
-      }
+      <CarList cars={filteredCars} />
+      <CarValue cars={filteredCars}/>
     </>
   )
 }

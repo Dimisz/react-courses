@@ -7,7 +7,7 @@ interface Props {
 const CarList = ({cars}: Props) => {
 
   const dispatch = useAppDispatch();
-  const currentName = useAppSelector(state => state.carsState.carName);
+  const currentName = useAppSelector(state => state.formState.carName);
 
   const handleDelete = (id: number) => {
     dispatch(removeCar(id));
@@ -16,7 +16,7 @@ const CarList = ({cars}: Props) => {
   const renderedCars = cars.map((car) => {
     const isOnTheList = (currentName.length > 0) && car.name.toLowerCase().includes(currentName.toLowerCase());
 
-    console.log(isOnTheList, currentName.length);
+    // console.log(isOnTheList, currentName.length);
     return(
       <ul 
         key={car.id} 

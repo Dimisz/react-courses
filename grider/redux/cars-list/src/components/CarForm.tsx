@@ -1,10 +1,9 @@
-import { useState } from "react";
-import { addCar, useAppDispatch, setCarName } from "../store";
+import { addCar, useAppDispatch, setCarName, setCarCost, useAppSelector, resetCarCost, resetCarName } from "../store";
 import { Car } from "../models/car";
 
 const CarForm = () => {
-  const [carName, setName] = useState('');
-  const [carValue, setValue] = useState('');
+  const carName = useAppSelector(state => state.formState.carName);
+  const carValue = useAppSelector(state => state.formState.carCost);
 
   const dispatch = useAppDispatch();
 
@@ -18,13 +17,11 @@ const CarForm = () => {
         value: carValue 
     }
     dispatch(addCar(newCar));
-    dispatch(setCarName(''));
-    setName('');
-    setValue(''); 
+    dispatch(resetCarCost());
+    dispatch(resetCarName());
   }
 
   const handleCarNameChange = (name: string) => {
-    setName(name);
     dispatch(setCarName(name));
   }
 
@@ -42,7 +39,7 @@ const CarForm = () => {
         type='text' 
         id='car-value'
         value={carValue}
-        onChange={(e) => setValue(e.target.value)} 
+        onChange={(e) => dispatch(setCarCost(e.target.value))} 
       />
       <button type='submit'>Submit</button>
     </form>
