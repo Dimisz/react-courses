@@ -16,12 +16,12 @@ function App() {
   }
 
   return (
-    <>
+    <div className='container is-fluid'>
       <CarForm />
       <CarSearch />
       <CarList cars={filteredCars} />
       <CarValue cars={filteredCars}/>
-    </>
+    </div>
   )
 }
 

@@ -9,7 +9,7 @@ const CarList = ({cars}: Props) => {
   const dispatch = useAppDispatch();
   const currentName = useAppSelector(state => state.formState.carName);
 
-  const handleDelete = (id: number) => {
+  const handleDelete = (id: string) => {
     dispatch(removeCar(id));
   }
 
@@ -18,25 +18,24 @@ const CarList = ({cars}: Props) => {
 
     // console.log(isOnTheList, currentName.length);
     return(
-      <ul 
+      <div 
         key={car.id} 
+        className='panel'
         style={{
-          display: 'flex', 
-          alignItems:'center', 
-          justifyContent:'space-between',
-          border: '1px solid white',
           backgroundColor: isOnTheList ? 'red' : ''
           }}
         >
-        <div>{car.name} - ${car.value}</div>
-        <button onClick={() => handleDelete(car.id)}>Delete</button>
-      </ul>
+        <p>{car.name} - ${car.value}</p>
+        <button 
+          className="button is-danger"
+          onClick={() => handleDelete(car.id)}>Delete</button>
+      </div>
     );
   })
   return(
-    <ul>
+    <div className="car-list">
       {renderedCars}
-    </ul>
+    </div>
   );
 }
 
