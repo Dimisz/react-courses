@@ -21,6 +21,7 @@ const DownloadableCV = () => {
     <div>
       <Paper ref={targetRef} sx={{ pt: 2 }}>
         <DownloadableHeader/>
+        <Divider/>
         <WorkExperienceDownloadable/>
         <Divider/>
         <EducationDownloadable/>

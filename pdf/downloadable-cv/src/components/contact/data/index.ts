@@ -78,9 +78,7 @@ export const skills = [
     skillsList: [
       'React, Redux, Next.js, Javascript, Typescript',
       'C#, ASP.NET',
-      'Java, Spring Boot',
-      'Python, Tensorflow',
-      'Basics of Git, Docker'
+      'Basics of Git, Docker, Java, Spring Boot, and Python'
     ]
   },
   {

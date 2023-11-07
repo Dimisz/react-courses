@@ -25,7 +25,7 @@ const DownloadableHeader = () => {
               <DownloadableName  />
               <DownloadableLinks />
             </Box>
-            <Divider/>
+            {/* <Divider/> */}
             {/* <DownloadableInfoGrid /> */}
           </Grid>
       </Grid>

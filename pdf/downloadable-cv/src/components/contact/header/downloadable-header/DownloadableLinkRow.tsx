@@ -22,7 +22,7 @@ const DownloadableLinksRow = ({ content, label, icon }: Props) => {
           <Box display='flex' alignItems='flex-start' flexDirection='column' justifyContent='center'>
             <Box display='flex' alignItems='center'>
               {icon}
-              <Typography variant='h6' pr={2} pl={2}>{label}:</Typography>
+              <Typography variant='h6' pl={1}>{label}:</Typography>
             </Box>
             <Typography variant='body1' fontStyle='italic'>{content}</Typography>
           </Box>
