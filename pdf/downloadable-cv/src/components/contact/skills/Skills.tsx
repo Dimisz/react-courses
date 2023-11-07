@@ -16,7 +16,9 @@ const Skills = () => {
 
   const renderedSkills = skills.map((skill:{ title:string; skillsList:string[]; }) => {
     return(
-      <SkillsSection skill={skill} key={skill.title}/>   
+      <SkillsSection skill={skill} key={skill.title} 
+      bodyTextSize='h4' subHeaderTextSize='h5'
+      />   
     )
   });
   return(

@@ -21,7 +21,7 @@ const EducationDownloadable = () => {
             BA in Linguistics, Translation of English and Arabic
           </Typography>
         </Box>
-        <Divider/>
+        {/* <Divider/> */}
         <Box pt={1}>
           <Box display='flex' justifyContent='space-between'>
             <Typography variant={titleVariant}>

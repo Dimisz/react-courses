@@ -1,50 +1,34 @@
-import { Box, Divider, Typography } from "@mui/material";
-const LanguagesProficiencyDownloadable = () => {
-  const textFontSize = 'body1';
-  const titleFontSize = 'h5';
+import { Box, Grid, Typography } from "@mui/material";
+
+interface Props {
+  bodyTextSize: any;
+  subHeaderTextSize: any;
+  sectionHeaderTextSize: any;
+}
+
+const LanguagesProficiencyDownloadable = ({bodyTextSize, sectionHeaderTextSize, subHeaderTextSize}:Props) => {
 
   return(
     <Box pl={4} pr={4} pb={2} pt={2}>
-        <Typography variant={titleFontSize}>Languages</Typography>
-        <Box>
-            <Box display='flex' justifyContent='space-between'>
-              <Typography variant={textFontSize}>
-              Ukranian, Belarusian, Russian
-              </Typography>
-              <Typography variant={textFontSize}>
-                Native
-              </Typography>
-            </Box>
-            <Divider/>
-            <Box display='flex' justifyContent='space-between' pt={1}>
-              <Typography variant={textFontSize}>
-              English
-              </Typography>
-              <Typography variant={textFontSize}>
-                Fluent (TOEFL Score 115)
-              </Typography>
-            </Box>
-            <Divider/>
-            <Box display='flex' justifyContent='space-between' pt={1}>
-              <Typography variant={textFontSize}>
-              Arabic
-              </Typography>
-              <Typography variant={textFontSize}>
-                Intermediate
-              </Typography>
-            </Box>
-            <Divider/>
-            <Box display='flex' justifyContent='space-between' pt={1}>
-              <Typography variant={textFontSize}>
-              Mandarin
-              </Typography>
-              <Typography variant={textFontSize}>
-                Beginner
-              </Typography>
-            </Box>
-
-        </Box>
-      </Box>
-  )
+        <Typography variant={sectionHeaderTextSize}>Languages</Typography>
+        <Grid container spacing={3} >
+          <Grid item xs={3} display='flex' justifyContent='flex-start' alignItems='center'>
+                  <Typography variant={bodyTextSize}>English</Typography>
+                  <Typography variant={bodyTextSize} fontStyle='italic' pl={2}>Fluent</Typography>
+          </Grid>
+          <Grid item xs={3} display='flex' justifyContent='flex-start' alignItems='center'>
+                  <Typography variant={bodyTextSize}>Ukranian, Russian</Typography>
+                  <Typography variant={bodyTextSize} fontStyle='italic' pl={2}>Native</Typography>
+          </Grid>
+          <Grid item xs={3} display='flex' justifyContent='flex-start' alignItems='center'>
+                  <Typography variant={bodyTextSize}>Arabic</Typography>
+                  <Typography variant={bodyTextSize} fontStyle='italic' pl={2}>Intermediate</Typography>
+          </Grid>
+          <Grid item xs={3} display='flex' justifyContent='flex-start' alignItems='center'>
+                  <Typography variant={bodyTextSize}>Mandarin</Typography>
+                  <Typography variant={bodyTextSize} fontStyle='italic' pl={2}>Beginner</Typography>
+          </Grid>
+        </Grid> 
+    </Box>);
 }
 export default LanguagesProficiencyDownloadable;
