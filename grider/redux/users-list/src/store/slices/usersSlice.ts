@@ -1,8 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchUsers } from "../thunks/fetchUsers";
+import { User } from "../../models/user";
+import { addUser } from "../thunks/addUser";
 
 interface UsersState {
-  data: string[];
+  data: User[];
   isLoading: boolean;
   error: { message: string; } | null; 
 }
@@ -18,7 +20,20 @@ const usersSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers(builder){
-    builder.addCase(fetchUsers.pending, (state, action) => {
+    builder.addCase(addUser.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(addUser.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.data.push(action.payload);
+    });
+
+    builder.addCase(addUser.rejected, (state) => {
+      state.isLoading = false;
+      console.log('rejected');
+    });
+
+    builder.addCase(fetchUsers.pending, (state) => {
       state.isLoading = true;
     });
     builder.addCase(fetchUsers.fulfilled, (state, action) => {
