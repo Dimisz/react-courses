@@ -20,6 +20,7 @@ const usersSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers(builder){
+    // addUser
     builder.addCase(addUser.pending, (state) => {
       state.isLoading = true;
     });
@@ -27,12 +28,12 @@ const usersSlice = createSlice({
       state.isLoading = false;
       state.data.push(action.payload);
     });
-
-    builder.addCase(addUser.rejected, (state) => {
+    builder.addCase(addUser.rejected, (state, action) => {
       state.isLoading = false;
-      console.log('rejected');
+      state.error = { message: action.error.message || 'Error occurred adding a user' };
+      // console.log('rejected');
     });
-
+    // fetchUsers
     builder.addCase(fetchUsers.pending, (state) => {
       state.isLoading = true;
     });

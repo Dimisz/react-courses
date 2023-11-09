@@ -1,4 +1,18 @@
 import className from 'classnames';
+import { ReactNode } from 'react';
+
+interface Props {
+  children?: ReactNode;
+  primary?: boolean;
+  secondary?: boolean;
+  success?: boolean;
+  warning?: boolean;
+  danger?: boolean;
+  outline?: boolean;
+  rounded?: boolean;
+  className?: string;
+  onClick: () => void;
+}
 
 function Button({
   children,
@@ -10,7 +24,7 @@ function Button({
   outline,
   rounded,
   ...rest
-}) {
+}: Props) {
   const classes = className(
     rest.className,
     'flex items-center px-3 py-1.5 border',
@@ -38,7 +52,7 @@ function Button({
 }
 
 Button.propTypes = {
-  checkVariationValue: ({ primary, secondary, success, warning, danger }) => {
+  checkVariationValue: ({ primary, secondary, success, warning, danger }:Props) => {
     const count =
       Number(!!primary) +
       Number(!!secondary) +
