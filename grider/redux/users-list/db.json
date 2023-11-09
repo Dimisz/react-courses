@@ -3,34 +3,6 @@
     {
       "id": 1,
       "name": "Myra"
-    },
-    {
-      "id": 2,
-      "name": "James"
-    },
-    {
-      "name": "Mr. Orville Wuckert",
-      "id": 3
-    },
-    {
-      "name": "Dwayne Brakus",
-      "id": 4
-    },
-    {
-      "name": "Toni Murray",
-      "id": 5
-    },
-    {
-      "name": "Louise Lueilwitz",
-      "id": 6
-    },
-    {
-      "name": "Lynn Hammes",
-      "id": 7
-    },
-    {
-      "name": "Juana Shields",
-      "id": 8
     }
   ],
   "albums": [],

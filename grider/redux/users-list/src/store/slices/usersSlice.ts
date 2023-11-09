@@ -2,11 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 import { fetchUsers } from "../thunks/fetchUsers";
 import { User } from "../../models/user";
 import { addUser } from "../thunks/addUser";
+import { ResError } from "../../models/error";
 
 interface UsersState {
   data: User[];
   isLoading: boolean;
-  error: { message: string; } | null; 
+  error: ResError | null; 
 }
 
 const initialState: UsersState = {
