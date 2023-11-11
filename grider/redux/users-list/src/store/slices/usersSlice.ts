@@ -3,6 +3,7 @@ import { fetchUsers } from "../thunks/fetchUsers";
 import { User } from "../../models/user";
 import { addUser } from "../thunks/addUser";
 import { ResError } from "../../models/error";
+import { deleteUser } from "../thunks/deleteUser";
 
 interface UsersState {
   data: User[];
@@ -21,6 +22,20 @@ const usersSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers(builder){
+    // deleteUser
+    builder.addCase(deleteUser.pending, (state) =>{
+      state.isLoading = true;
+    });
+    builder.addCase(deleteUser.fulfilled, (state, action) =>{
+      state.isLoading = false;
+      state.data = state.data.filter((user) => {
+        return user.id !== action.payload.id;
+      });
+    });
+    builder.addCase(deleteUser.rejected, (state, action) =>{
+      state.isLoading = false;
+      state.error = { message: action.error.message || 'Error occurred deleting a user' };
+    });
     // addUser
     builder.addCase(addUser.pending, (state) => {
       state.isLoading = true;

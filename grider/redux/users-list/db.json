@@ -1,24 +1,12 @@
 {
   "users": [
     {
-      "id": 1,
-      "name": "Myra"
-    },
-    {
-      "name": "Vicki Pouros",
-      "id": 2
-    },
-    {
-      "name": "Randolph Ebert-Bahringer",
-      "id": 3
-    },
-    {
-      "name": "Lela Trantow",
-      "id": 4
-    },
-    {
-      "name": "Ana Leannon DVM",
+      "name": "Rita Kutch",
       "id": 5
+    },
+    {
+      "name": "Kate Hoeger",
+      "id": 6
     }
   ],
   "albums": [],

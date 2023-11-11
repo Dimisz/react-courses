@@ -1,17 +1,12 @@
-// export const addUser = createAsyncThunk('users/add', 
-//   async () => {
-//     const res = await axios.post(`${SERVER_URL}/users`, {name: faker.person.fullName() });
-//     // console.log(res);
-//     return res.data;
-//   }
-// );
-
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { SERVER_URL } from "../../data";
+import { User } from "../../models/user";
 
-// export const deleteUser(id: number) = createAsyncThunk('users/delete', async () => {
-//   const res = await axios.delete(`${SERVER_URL}/users/${id}`);
-//   console.log(res);
-// }
-// )
+export const deleteUser = createAsyncThunk('users/delete', 
+  async (user: User) => {
+    const { id } = user;
+    const res = await axios.delete(`${SERVER_URL}/users/${id}`);
+    return user;
+  }
+)
