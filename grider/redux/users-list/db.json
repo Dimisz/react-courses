@@ -7,8 +7,72 @@
     {
       "name": "Kate Hoeger",
       "id": 6
+    },
+    {
+      "name": "Connie Hauck-Fisher",
+      "id": 7
+    },
+    {
+      "name": "Lana Gibson",
+      "id": 8
+    },
+    {
+      "name": "Cynthia Cruickshank IV",
+      "id": 9
     }
   ],
-  "albums": [],
-  "photos": []
+  "albums": [
+    {
+      "userId": 7,
+      "title": "Licensed Cotton Shirt",
+      "id": 12
+    },
+    {
+      "userId": 5,
+      "title": "Electronic Metal Mouse",
+      "id": 14
+    },
+    {
+      "userId": 6,
+      "title": "Handmade Plastic Hat",
+      "id": 15
+    },
+    {
+      "userId": 7,
+      "title": "Incredible Metal Table",
+      "id": 16
+    },
+    {
+      "userId": 8,
+      "title": "Small Wooden Mouse",
+      "id": 17
+    },
+    {
+      "userId": 5,
+      "title": "Ergonomic Frozen Sausages",
+      "id": 19
+    },
+    {
+      "userId": 5,
+      "title": "Elegant Steel Sausages",
+      "id": 20
+    },
+    {
+      "userId": 5,
+      "title": "Intelligent Granite Pizza",
+      "id": 21
+    }
+  ],
+  "photos": [
+    {
+      "albumId": 14,
+      "url": "https://loremflickr.com/150/150/abstract?lock=8711515098054656",
+      "id": 3
+    },
+    {
+      "albumId": 14,
+      "url": "https://loremflickr.com/150/150/abstract?lock=492098174320640",
+      "id": 4
+    }
+  ]
 }
